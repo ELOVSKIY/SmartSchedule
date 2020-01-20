@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/CurrentScheduleFragment">
+
+    <fragment
+        android:id="@+id/CurrentScheduleFragment"
+        android:name="com.helicopter.ui.schedule.current.CurrentScheduleFragment"
+        android:label="current_schedule_fragment"
+        tools:layout="@layout/current_schedule_fragment" />
+    <fragment
+        android:id="@+id/AlarmFragment"
+        android:name="com.helicopter.ui.alarm.AlarmFragment"
+        android:label="alarm_fragment"
+        tools:layout="@layout/alarm_fragment" />
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.helicopter.ui.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+</navigation>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BSUIR SMART CLOCK</string>
+    <string name="schedule">Schedule</string>
+    <string name="groups">Groups</string>
+    <string name="alarm">Alarm</string>
+    <string name="settings">Settings</string>
 </resources>
