@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 
 import com.helicopter.R
+import kotlinx.android.synthetic.main.current_schedule_fragment.*
 
 class CurrentScheduleFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = CurrentScheduleFragment()
-    }
 
     private lateinit var viewModel: CurrentScheduleViewModel
 
@@ -27,7 +25,7 @@ class CurrentScheduleFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CurrentScheduleViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.fetchSchedule()
     }
 
 }

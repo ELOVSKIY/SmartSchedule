@@ -10,16 +10,4 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-
-    private val job = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
-
-    val scheduler = MutableLiveData<GroupScheduleResponse>()
-
-    fun fetchSchedule(groupNumb: Int) {
-        coroutineScope.launch {
-            scheduler.value =
-                RetrofitClient.getScheduleApi().fetchSchedulerByStudentGroup(groupNumb)
-        }
-    }
 }
