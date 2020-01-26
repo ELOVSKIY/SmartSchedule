@@ -1,7 +1,6 @@
 package com.helicopter.data.network.api
 
 import com.helicopter.data.network.remote.response.ScheduleResponse
-import com.helicopter.data.network.remote.response.groupSchedulerResponse.GroupScheduleResponse
 import retrofit2.http.*
 
 interface ScheduleAPI {

@@ -16,7 +16,7 @@ class CurrentScheduleViewModel : ViewModel() {
 
     fun fetchSchedule() {
         coroutineScope.launch {
-            val t = RetrofitClient.getScheduleApi().fetchGroupScheduleByStudentGroup(851001)
+            val t = RetrofitClient.getScheduleApi().fetchEployeeScheduleById(500434)
             val r = RetrofitClient.getListApi().fetchGroupList()
 
         }

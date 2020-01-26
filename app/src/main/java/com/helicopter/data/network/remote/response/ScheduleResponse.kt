@@ -12,11 +12,12 @@ data class ScheduleResponse(
     val examSchedules: List<Schedule>,
     val todayDate: String,
     val todaySchedules: List<ScheduleModel>,
-    val tomorrowData: String,
+    val tomorrowDate: String,
     val tomorrowSchedules: List<ScheduleModel>,
     val currentWeekNumber: Int,
     val dateStart: String,
     val dateEnd: String,
     val sessionStart: String,
     val sessionEnd: String
+
 )
