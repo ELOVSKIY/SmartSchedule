@@ -1,10 +1,13 @@
 package com.helicopter.data.network.models
 
+import com.google.gson.annotations.SerializedName
+
 data class StudentGroup(
     val calendarId: String,
     val course: Int,
     val facultyId: Int,
-    val id: Int,
+    @SerializedName("id")
+    val groupId: Int,
     val name: String,
     val specialityDepartmentEducationFormId: Int
 )

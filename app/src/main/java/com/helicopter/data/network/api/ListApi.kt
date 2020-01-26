@@ -25,6 +25,7 @@ interface ListApi {
     @GET("specialities")
     suspend fun fetchSpecialityList(): List<Speciality>
 
+    //CHECKED
     @GET("auditory")
     suspend fun fetchAuditoryList(): List<Auditory>
 }
