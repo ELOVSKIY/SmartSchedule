@@ -16,7 +16,7 @@ interface ScheduleAPI {
     @GET("studentGroup/schedule")
     suspend fun fetchGroupScheduleByStudentGroup(
         @Query("studentGroup") studentGroup: Int
-    ): Any
+    ): GroupScheduleResponse
 
     //CHECKED
     @GET("portal/employeeSchedule")

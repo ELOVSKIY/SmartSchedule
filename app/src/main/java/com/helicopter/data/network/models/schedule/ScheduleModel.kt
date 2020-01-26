@@ -6,7 +6,7 @@ import com.helicopter.data.network.models.Employee
 import com.helicopter.data.network.models.StudentGroup
 
 data class ScheduleModel(
-    val auditory: Auditory,
+    val auditory: List<String>,
     val employee: List<Employee>,
     val endLessonTime: String,
     val lessonTime: String,
@@ -14,7 +14,7 @@ data class ScheduleModel(
     val note: String,
     val numSubgroup: Int,
     val startLessonTime: String,
-    val studentGroup: StudentGroup,
+    val studentGroup: List<String>,
     val subject: String,
     val weekNumber: List<Int>,
     @SerializedName("zaoch")
