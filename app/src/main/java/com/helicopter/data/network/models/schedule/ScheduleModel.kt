@@ -1,9 +1,12 @@
-package com.helicopter.data.network.models.scheduler
+package com.helicopter.data.network.models.schedule
 
+import com.google.gson.annotations.SerializedName
+import com.helicopter.data.network.models.Auditory
 import com.helicopter.data.network.models.Employee
+import com.helicopter.data.network.models.StudentGroup
 
 data class ScheduleModel(
-    val auditory: List<String>,
+    val auditory: Auditory,
     val employee: List<Employee>,
     val endLessonTime: String,
     val lessonTime: String,
@@ -11,8 +14,9 @@ data class ScheduleModel(
     val note: String,
     val numSubgroup: Int,
     val startLessonTime: String,
-    val studentGroup: List<String>,
+    val studentGroup: StudentGroup,
     val subject: String,
     val weekNumber: List<Int>,
-    val zaoch: Boolean
+    @SerializedName("zaoch")
+    val correspondence: Boolean
 )
