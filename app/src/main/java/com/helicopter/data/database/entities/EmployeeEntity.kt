@@ -27,6 +27,6 @@ data class EmployeeEntity(
     @ColumnInfo(name = "academic_department")
     val academicDepartment: List<String>,
 
-    @ColumnInfo(name = "dull_name")
+    @ColumnInfo(name = "full_name")
     val fullName: String
 )
