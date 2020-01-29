@@ -13,8 +13,9 @@ data class ScheduleModelEntity(
     val scheduleModelId: Long,
 
     val auditory: List<String>,
-    @Relation(parentColumn = "schedule_model_id", entityColumn = "employee_id")
+    //TODO(РАЗОЮРАТСЬЯ С ЭТИМ)
     val employee: List<EmployeeEntity>,
+    @ColumnInfo(name="end_lesson_time")
     val endLessonTime: String,
     @ColumnInfo(name ="lesson_time")
     val lessonTime: String,
@@ -23,9 +24,11 @@ data class ScheduleModelEntity(
     val note: String,
     @ColumnInfo(name ="num_subgroup")
     val numSubgroup: Int,
+    @ColumnInfo(name ="start_lesson_time")
     val startLessonTime: String,
     @ColumnInfo(name ="student_group")
-    val studentGroup: List<String>,
+    //TODO(СПИСОК ГРУПП, ПРИХОДИТ МАССИВ)
+    val studentGroup: String,
     val subject: String,
     @ColumnInfo(name ="week_number")
     val weekNumber: List<Int>,

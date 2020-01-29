@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.helicopter.data.database.entities.convertors.ListConverter
-
+//CORRECT ENTITY
 @Entity(tableName = "employee")
 @TypeConverters(ListConverter::class)
 data class EmployeeEntity(

@@ -3,10 +3,10 @@ package com.helicopter.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-
+//CORRECT ENTITY
 @Entity(tableName = "student_group")
 data class StudentGroupEntity(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "group_id")
     val groupId: Int,
 

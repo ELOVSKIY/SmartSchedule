@@ -1,6 +1,5 @@
 package com.helicopter.data.network.models
 
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class Employee(
