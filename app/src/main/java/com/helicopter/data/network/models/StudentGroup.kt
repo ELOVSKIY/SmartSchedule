@@ -7,7 +7,7 @@ data class StudentGroup(
     val course: Int,
     val facultyId: Int,
     @SerializedName("id")
-    val groupId: Int,
+    val groupId: Long,
     val name: String,
     val specialityDepartmentEducationFormId: Int
 )

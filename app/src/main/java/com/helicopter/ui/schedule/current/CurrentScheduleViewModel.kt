@@ -1,7 +1,11 @@
 package com.helicopter.ui.schedule.current
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.helicopter.data.database.getInstance
+import com.helicopter.data.network.remote.toScheduleModelEntityList
 import com.helicopter.data.network.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,10 +18,18 @@ class CurrentScheduleViewModel : ViewModel() {
 
     val scheduler = MutableLiveData<Any>()
 
-    fun fetchSchedule() {
+    fun fetchSchedule(context: Context) {
         coroutineScope.launch {
-            val t = RetrofitClient.getScheduleApi().fetchEployeeScheduleById(500434)
-            val r = RetrofitClient.getListApi().fetchGroupList()
+            try {
+                val s = RetrofitClient.getScheduleApi().fetchGroupScheduleByStudentGroup(851001)
+                val t = s.toScheduleModelEntityList()
+                val scheduleDao = getInstance(context).scheduleModelDao
+                scheduleDao.insertScheduleList(t)
+                val re = scheduleDao.fetchScheduleListByGroupName("851001")
+
+            } catch (e: Exception) {
+                Log.e("hui", e.toString())
+            }
 
         }
     }

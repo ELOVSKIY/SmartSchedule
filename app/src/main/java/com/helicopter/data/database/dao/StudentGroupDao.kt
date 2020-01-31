@@ -11,20 +11,20 @@ import com.helicopter.data.database.entities.StudentGroupEntity
 interface StudentGroupDao {
 
     @Insert
-    suspend fun insertStudyGroup(group: StudentGroupEntity)
+    fun insertStudyGroup(group: StudentGroupEntity)
 
     @Insert
-    suspend fun insertStudyGroupList(groups: List<StudentGroupEntity>)
+    fun insertStudyGroupList(groups: List<StudentGroupEntity>)
 
     @Update
-    suspend fun updateStudyGroup(group: StudentGroupEntity)
+    fun updateStudyGroup(group: StudentGroupEntity)
 
     @Update
-    suspend fun updateStudyGroupList(groups: List<StudentGroupEntity>)
+    fun updateStudyGroupList(groups: List<StudentGroupEntity>)
 
     @Query("SELECT * FROM student_group WHERE group_id = :groupId")
-    suspend fun getStudyGroupById(groupId: Int): LiveData<StudentGroupEntity>
+    fun fetchStudyGroupById(groupId: Int): LiveData<StudentGroupEntity>
 
     @Query("SELECT * FROM student_group WHERE group_name = :groupName")
-    suspend fun getStudyGroupByName(groupName: String): LiveData<StudentGroupEntity>
+    fun fetchStudyGroupByName(groupName: String): LiveData<StudentGroupEntity>
 }

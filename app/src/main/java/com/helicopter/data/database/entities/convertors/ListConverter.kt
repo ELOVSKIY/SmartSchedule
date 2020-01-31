@@ -22,6 +22,10 @@ class ListConverter{
 
     @TypeConverter
     fun stringToIntList(data: String): List<Int?>? {
-        return data.split(",").map{it.toInt()}
+        return if (data.isNotEmpty()) {
+            data.split(",").map { it.toInt() }
+        } else {
+            listOf()
+        }
     }
 }

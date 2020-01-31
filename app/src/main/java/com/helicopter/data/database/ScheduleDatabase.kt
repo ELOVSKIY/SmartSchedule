@@ -5,20 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.helicopter.data.database.dao.EmployeeDao
-import com.helicopter.data.database.dao.ScheduleDao
+import com.helicopter.data.database.dao.ScheduleModelDao
 import com.helicopter.data.database.dao.StudentGroupDao
 import com.helicopter.data.database.entities.*
 
 @Database(
     entities = [EmployeeEntity::class, StudentGroupEntity::class, LastUpdateEntity::class,
-        ScheduleEntity::class, ScheduleModelEntity::class], version = 1, exportSchema = false
+        ScheduleModelEntity::class], version = 1, exportSchema = false
 )
 abstract class ScheduleDatabase : RoomDatabase() {
     abstract val studentGroupDao: StudentGroupDao
 
-    abstract val scheduleDao: ScheduleDao
+    abstract val scheduleModelDao: ScheduleModelDao
 
     abstract val employeeDao: EmployeeDao
+
 }
 
 @Volatile
@@ -38,3 +39,5 @@ fun getInstance(context: Context): ScheduleDatabase {
     }
     return INSTANCE
 }
+
+

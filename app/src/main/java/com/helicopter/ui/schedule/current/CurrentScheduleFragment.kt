@@ -25,7 +25,7 @@ class CurrentScheduleFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CurrentScheduleViewModel::class.java)
-        viewModel.fetchSchedule()
+        viewModel.fetchSchedule(context!!)
     }
 
 }

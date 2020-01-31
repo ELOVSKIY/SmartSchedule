@@ -6,8 +6,8 @@ import com.helicopter.data.network.models.schedule.Schedule
 import com.helicopter.data.network.models.schedule.ScheduleModel
 
 data class ScheduleResponse(
-    val employee: Employee,
-    val studentGroup: StudentGroup,
+    val employee: Employee?,
+    val studentGroup: StudentGroup?,
     val schedules: List<Schedule>,
     val examSchedules: List<Schedule>,
     val todayDate: String,

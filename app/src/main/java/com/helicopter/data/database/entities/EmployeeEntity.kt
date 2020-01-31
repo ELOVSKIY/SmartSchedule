@@ -25,6 +25,7 @@ data class EmployeeEntity(
     @ColumnInfo(name = "calendar_id")
     val calendarId: String,
     @ColumnInfo(name = "academic_department")
+    @TypeConverters(ListConverter::class)
     val academicDepartment: List<String>,
 
     @ColumnInfo(name = "full_name")

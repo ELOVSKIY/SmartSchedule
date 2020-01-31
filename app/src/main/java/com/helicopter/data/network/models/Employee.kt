@@ -6,12 +6,12 @@ data class Employee(
     val firstName: String,
     val lastName: String,
     val middleName: String,
-    val rank: String,
-    val photoLink: String,
-    val calendarId: String,
+    val rank: String?,
+    val photoLink: String?,
+    val calendarId: String?,
     val academicDepartment: List<String>,
     @SerializedName("id")
-    val employeeId: Int,
+    val employeeId: Long,
     @SerializedName("fio")
     val fullName: String
 )

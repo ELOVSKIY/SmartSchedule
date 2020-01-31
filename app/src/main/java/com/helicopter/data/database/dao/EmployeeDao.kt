@@ -11,18 +11,18 @@ import com.helicopter.data.database.entities.EmployeeEntity
 interface EmployeeDao {
 
     @Insert
-    suspend fun insertEmployee(employee: EmployeeEntity)
+    fun insertEmployee(employee: EmployeeEntity)
 
     @Insert
-    suspend fun insertEmployeeList(staff: List<EmployeeEntity>)
+    fun insertEmployeeList(staff: List<EmployeeEntity>)
 
     @Update
-    suspend fun updateEmployee(employee: EmployeeEntity)
+    fun updateEmployee(employee: EmployeeEntity)
 
     @Update
-    suspend fun updateEmployeeList(staff: List<EmployeeEntity>)
+    fun updateEmployeeList(staff: List<EmployeeEntity>)
 
     @Query("SELECT * FROM employee WHERE employee_id = :id")
-    suspend fun getEmployeeById(id: Int) : LiveData<EmployeeEntity>
+    fun getEmployeeById(id: Int): LiveData<List<EmployeeEntity>>
 
 }

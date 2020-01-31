@@ -12,25 +12,34 @@ data class ScheduleModelEntity(
     @ColumnInfo(name = "schedule_model_id")
     val scheduleModelId: Long,
 
+
+    @ColumnInfo(name = "week_day")
+    val weekDay: String,
+    @ColumnInfo(name = "group_id")
+    val groupId: Long?,
+    @ColumnInfo(name = "employee_id")
+    val employeeId: Long?,
+    @ColumnInfo(name = "group_name")
+    val groupName: String?,
+
     val auditory: List<String>,
-    //TODO(РАЗОЮРАТСЬЯ С ЭТИМ)
-    val employee: List<EmployeeEntity>,
-    @ColumnInfo(name="end_lesson_time")
+    @Embedded
+    val employee: Employee?,
+    @ColumnInfo(name = "end_lesson_time")
     val endLessonTime: String,
-    @ColumnInfo(name ="lesson_time")
+    @ColumnInfo(name = "lesson_time")
     val lessonTime: String,
-    @ColumnInfo(name ="lesson_type")
+    @ColumnInfo(name = "lesson_type")
     val lessonType: String,
     val note: String,
-    @ColumnInfo(name ="num_subgroup")
+    @ColumnInfo(name = "num_subgroup")
     val numSubgroup: Int,
-    @ColumnInfo(name ="start_lesson_time")
+    @ColumnInfo(name = "start_lesson_time")
     val startLessonTime: String,
-    @ColumnInfo(name ="student_group")
-    //TODO(СПИСОК ГРУПП, ПРИХОДИТ МАССИВ)
-    val studentGroup: String,
+    @ColumnInfo(name = "student_group")
+    val studentGroup: List<String>,
     val subject: String,
-    @ColumnInfo(name ="week_number")
+    @ColumnInfo(name = "week_number")
     val weekNumber: List<Int>,
     @SerializedName("zaoch")
     val correspondence: Boolean
