@@ -1,10 +1,7 @@
 package com.helicopter.data.database.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.helicopter.data.database.entities.EmployeeEntity
 
 @Dao
@@ -13,7 +10,7 @@ interface EmployeeDao {
     @Insert
     fun insertEmployee(employee: EmployeeEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEmployeeList(staff: List<EmployeeEntity>)
 
     @Update
