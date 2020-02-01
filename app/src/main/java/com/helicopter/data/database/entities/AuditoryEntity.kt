@@ -17,10 +17,8 @@ data class AuditoryEntity(
     val note: String?,
     val capacity: String?,
     @Embedded(prefix = "auditory_type_")
-    @ColumnInfo(name="auditory_type")
     val auditoryType: AuditoryType,
     @Embedded(prefix = "building_number_")
-    @ColumnInfo(name = "building_number")
     val buildingNumber: BuildingNumber,
     @Embedded(prefix = "department_")
     val department: Department

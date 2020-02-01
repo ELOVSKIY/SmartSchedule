@@ -1,4 +1,4 @@
-package com.helicopter.data.database
+package com.helicopter.data.database.database
 
 import android.content.Context
 import androidx.room.Database
@@ -9,7 +9,8 @@ import com.helicopter.data.database.entities.*
 
 @Database(
     entities = [EmployeeEntity::class, StudentGroupEntity::class, LastUpdateEntity::class,
-        ScheduleModelEntity::class], version = 1, exportSchema = false
+        ScheduleModelEntity::class, SpecialityEntity::class, FacultyEntity::class, AuditoryEntity::class]
+    , version = 1, exportSchema = false
 )
 abstract class ScheduleDatabase : RoomDatabase() {
     abstract val studentGroupDao: StudentGroupDao
