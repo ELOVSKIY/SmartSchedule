@@ -7,7 +7,7 @@ import com.helicopter.data.database.entities.EmployeeEntity
 @Dao
 interface EmployeeDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEmployee(employee: EmployeeEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -20,6 +20,9 @@ interface EmployeeDao {
     fun updateEmployeeList(staff: List<EmployeeEntity>)
 
     @Query("SELECT * FROM employee WHERE employee_id = :id")
-    fun getEmployeeById(id: Int): LiveData<List<EmployeeEntity>>
+    fun fetchEmployeeById(id: Int): LiveData<EmployeeEntity>
+
+    @Query("SELECT * FROM employee")
+    fun fetchEmployeeList(): LiveData<List<EmployeeEntity>>
 
 }

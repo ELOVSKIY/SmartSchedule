@@ -11,7 +11,7 @@ import com.helicopter.data.database.entities.convertors.ListConverter
 data class EmployeeEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "employee_id")
-    val employeeId: Int,
+    val employeeId: Long,
 
     @ColumnInfo(name = "first_name")
     val firstName: String,
@@ -19,11 +19,11 @@ data class EmployeeEntity(
     val lastName: String,
     @ColumnInfo(name = "middle_name")
     val middleName: String,
-    val rank: String,
+    val rank: String?,
     @ColumnInfo(name = "photo_link")
-    val photoLink: String,
+    val photoLink: String?,
     @ColumnInfo(name = "calendar_id")
-    val calendarId: String,
+    val calendarId: String?, //TODO (странно вроде у всех должен быть)
     @ColumnInfo(name = "academic_department")
     @TypeConverters(ListConverter::class)
     val academicDepartment: List<String>,

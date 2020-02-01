@@ -7,19 +7,19 @@ interface ScheduleAPI {
 
     //CHECKED
     @GET("studentGroup/schedule")
-    suspend fun fetchGroupSceduleById(
-        @Field("id") groupId: Int
+    suspend fun fetchGroupScheduleById(
+        @Field("id") groupId: Long
     ): ScheduleResponse
 
     //CHECKED
     @GET("studentGroup/schedule")
-    suspend fun fetchGroupScheduleByStudentGroup(
-        @Query("studentGroup") studentGroup: Int
+    suspend fun fetchGroupScheduleByGroupName(
+        @Query("studentGroup") studentGroup: String
     ): ScheduleResponse
 
     //CHECKED
     @GET("portal/employeeSchedule")
     suspend fun fetchEployeeScheduleById(
-        @Query("employeeId") employeeId: Int
+        @Query("employeeId") employeeId: Long
     ): ScheduleResponse
 }

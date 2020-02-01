@@ -24,4 +24,7 @@ interface StudentGroupDao {
 
     @Query("SELECT * FROM student_group WHERE group_name = :groupName")
     fun fetchStudyGroupByName(groupName: String): LiveData<StudentGroupEntity>
+
+    @Query("SELECT * FROM student_group")
+    fun fetchGroupList(): LiveData<List<StudentGroupEntity>>
 }

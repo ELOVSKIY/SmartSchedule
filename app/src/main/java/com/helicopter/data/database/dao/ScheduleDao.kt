@@ -8,13 +8,13 @@ import androidx.room.Query
 import com.helicopter.data.database.entities.ScheduleModelEntity
 
 @Dao
-interface ScheduleModelDao {
+interface ScheduleDao {
 
     @Query("SELECT * FROM schedule_model WHERE group_id = :groupId")
     fun fetchScheduleListByGroupId(groupId: Long): LiveData<List<ScheduleModelEntity>>
 
     @Query("SELECT * FROM schedule_model WHERE group_name = :groupName")
-    suspend fun fetchScheduleListByGroupName(groupName: String): List<ScheduleModelEntity>
+    fun fetchScheduleListByGroupName(groupName: String): LiveData<List<ScheduleModelEntity>>
 
     @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId")
     fun fetchScheduleListByEmployeeId(employeeId: Long): LiveData<List<ScheduleModelEntity>>
@@ -42,8 +42,6 @@ interface ScheduleModelDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertScheduleList(scheduleList: List<ScheduleModelEntity>)
-
-    suspend fun insert()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSchedule(schedule: ScheduleModelEntity)
