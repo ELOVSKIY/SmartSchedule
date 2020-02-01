@@ -12,7 +12,7 @@ import com.helicopter.data.network.models.Department
 data class AuditoryEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "auditory_id")
-    val auditoryId: Int,
+    val auditoryId: Long,
     val name: String,
     val note: String?,
     val capacity: String?,

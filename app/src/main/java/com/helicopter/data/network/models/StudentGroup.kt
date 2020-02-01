@@ -6,7 +6,7 @@ import com.helicopter.data.database.entities.StudentGroupEntity
 data class StudentGroup(
     val calendarId: String,
     val course: Int,
-    val facultyId: Int,
+    val facultyId: Long,
     @SerializedName("id")
     val groupId: Long,
     val name: String,

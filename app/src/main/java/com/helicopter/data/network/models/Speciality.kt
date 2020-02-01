@@ -4,7 +4,7 @@ data class Speciality(
     val abbrev: String,
     val code: String,
     val educationForm: EducationForm,
-    val facultyId: Int,
-    val id: Int,
+    val facultyId: Long,
+    val id: Long,
     val name: String
 )

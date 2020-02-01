@@ -21,11 +21,7 @@ class CurrentScheduleViewModel : ViewModel() {
     fun fetchSchedule(context: Context) {
         coroutineScope.launch {
             try {
-                val s = RetrofitClient.getScheduleApi().fetchGroupScheduleByGroupName(851001)
-                val t = s.toScheduleModelEntityList()
-                val scheduleDao = getInstance(context).scheduleDao
-                scheduleDao.insertScheduleList(t)
-                val re = scheduleDao.fetchScheduleListByGroupName("851001")
+               val gr = RetrofitClient.getListApi().fetchGroupList()
 
             } catch (e: Exception) {
                 Log.e("hui", e.toString())

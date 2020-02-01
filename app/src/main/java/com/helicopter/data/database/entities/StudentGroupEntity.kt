@@ -12,7 +12,7 @@ data class StudentGroupEntity(
     @ColumnInfo(name = "group_name")
     val name: String,
     @ColumnInfo(name = "faculty_id")
-    val facultyId: Int,
+    val facultyId: Long,
     val course: Int,
     @ColumnInfo(name = "calendar_id")
     val calendarId: String,

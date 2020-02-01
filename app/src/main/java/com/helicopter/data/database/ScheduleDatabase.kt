@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.helicopter.data.database.dao.EmployeeDao
-import com.helicopter.data.database.dao.ScheduleDao
-import com.helicopter.data.database.dao.StudentGroupDao
+import com.helicopter.data.database.dao.*
 import com.helicopter.data.database.entities.*
 
 @Database(
@@ -19,6 +17,12 @@ abstract class ScheduleDatabase : RoomDatabase() {
     abstract val scheduleDao: ScheduleDao
 
     abstract val employeeDao: EmployeeDao
+
+    abstract val specialityDao: SpecialityDao
+
+    abstract val facultyDao: FacultyDao
+
+    abstract val auditoryDao: AuditoryDao
 
 }
 
