@@ -1,13 +1,9 @@
 package com.helicopter.ui.schedule.current
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.helicopter.data.database.database.ScheduleDatabase
 import com.helicopter.data.database.database.getInstance
 import com.helicopter.data.network.remote.toScheduleModelEntityList
 import com.helicopter.data.network.retrofit.RetrofitClient
@@ -21,7 +17,7 @@ class CurrentScheduleViewModel(private val app: Application) : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 val db = getInstance(app).scheduleDao
-                val schedule = RetrofitClient.getScheduleApi().fetchEployeeScheduleById(500590)
+                val schedule = RetrofitClient.getScheduleApi().fetchEmployeeScheduleById(500590)
                     .toScheduleModelEntityList()
                 db.insertScheduleList(schedule)
                 val s = db.fetchScheduleListByEmployeeId(500590)

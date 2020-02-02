@@ -11,13 +11,13 @@ import com.helicopter.data.database.entities.ScheduleModelEntity
 interface ScheduleDao {
 
     @Query("SELECT * FROM schedule_model WHERE group_id = :groupId")
-    fun fetchScheduleListByGroupId(groupId: Long): LiveData<List<ScheduleModelEntity>>
+    fun fetchScheduleListByGroupId(groupId: Long): List<ScheduleModelEntity>
 
     @Query("SELECT * FROM schedule_model WHERE group_name = :groupName")
-    suspend fun fetchScheduleListByGroupName(groupName: String): List<ScheduleModelEntity>
+    fun fetchScheduleListByGroupName(groupName: String): List<ScheduleModelEntity>
 
     @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId")
-    suspend fun fetchScheduleListByEmployeeId(employeeId: Long): List<ScheduleModelEntity>
+    fun fetchScheduleListByEmployeeId(employeeId: Long): List<ScheduleModelEntity>
 
     @Query("SELECT * FROM schedule_model WHERE group_id = :groupId AND week_number = :weekNumb AND week_day = :weekDay")
     fun fetchScheduleListByGroupIdAndWeek(
@@ -41,8 +41,8 @@ interface ScheduleDao {
     ): LiveData<List<ScheduleModelEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertScheduleList(scheduleList: List<ScheduleModelEntity>)
+    suspend fun insertScheduleList(scheduleList: List<ScheduleModelEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSchedule(schedule: ScheduleModelEntity)
+    suspend fun insertSchedule(schedule: ScheduleModelEntity)
 }

@@ -19,7 +19,7 @@ interface ScheduleAPI {
 
     //CHECKED
     @GET("portal/employeeSchedule")
-    suspend fun fetchEployeeScheduleById(
+    suspend fun fetchEmployeeScheduleById(
         @Query("employeeId") employeeId: Long
     ): ScheduleResponse
 }
