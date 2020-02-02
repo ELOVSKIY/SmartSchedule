@@ -5,22 +5,24 @@ import com.google.gson.annotations.SerializedName
 import com.helicopter.data.database.entities.convertors.ListConverter
 import com.helicopter.data.network.models.Employee
 
-@Entity(tableName = "schedule_model")
+@Entity(tableName = "schedule_model",
+    primaryKeys = ["group_id", "employee_id", "week_number", "week_day", "lesson_time", "num_subgroup"]
+)
 @TypeConverters(ListConverter::class)
 data class ScheduleModelEntity(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "schedule_model_id")
-    val scheduleModelId: Long,
+//    @PrimaryKey(autoGenerate = true)
+//    @ColumnInfo(name = "schedule_model_id")
+//    val scheduleModelId: Long,
 
 
     @ColumnInfo(name = "week_day")
     val weekDay: String,
     @ColumnInfo(name = "group_id")
-    val groupId: Long?,
+    val groupId: Long,
     @ColumnInfo(name = "employee_id")
-    val employeeId: Long?,
+    val employeeId: Long,
     @ColumnInfo(name = "group_name")
-    val groupName: String?,
+    val groupName: String,
 
     val auditory: List<String>,
     @Embedded

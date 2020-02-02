@@ -18,12 +18,14 @@ class ScheduleRepositoryImpl(private val scheduleDao: ScheduleDao): ScheduleRepo
 
     override suspend fun fetchScheduleByGroupName(groupName: String): LiveData<List<ScheduleModelEntity>>{
         refreshScheduleByGroupName(groupName)
-        return scheduleDao.fetchScheduleListByGroupName(groupName)
+//        return scheduleDao.fetchScheduleListByGroupName(groupName)
+        TODO()
     }
 
     override suspend fun fetchScheduleByEmployeeId(employeeId: Long): LiveData<List<ScheduleModelEntity>>{
         refreshScheduleByEmployeeId(employeeId)
-        return scheduleDao.fetchScheduleListByEmployeeId(employeeId)
+        TODO()
+//        return scheduleDao.fetchScheduleListByEmployeeId(employeeId)
     }
 
 

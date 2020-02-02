@@ -14,10 +14,10 @@ interface ScheduleDao {
     fun fetchScheduleListByGroupId(groupId: Long): LiveData<List<ScheduleModelEntity>>
 
     @Query("SELECT * FROM schedule_model WHERE group_name = :groupName")
-    fun fetchScheduleListByGroupName(groupName: String): LiveData<List<ScheduleModelEntity>>
+    suspend fun fetchScheduleListByGroupName(groupName: String): List<ScheduleModelEntity>
 
     @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId")
-    fun fetchScheduleListByEmployeeId(employeeId: Long): LiveData<List<ScheduleModelEntity>>
+    suspend fun fetchScheduleListByEmployeeId(employeeId: Long): List<ScheduleModelEntity>
 
     @Query("SELECT * FROM schedule_model WHERE group_id = :groupId AND week_number = :weekNumb AND week_day = :weekDay")
     fun fetchScheduleListByGroupIdAndWeek(

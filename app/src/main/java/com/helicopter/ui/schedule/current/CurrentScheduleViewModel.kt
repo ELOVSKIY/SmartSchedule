@@ -1,30 +1,42 @@
 package com.helicopter.ui.schedule.current
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.helicopter.data.database.database.ScheduleDatabase
+import com.helicopter.data.database.database.getInstance
+import com.helicopter.data.network.remote.toScheduleModelEntityList
 import com.helicopter.data.network.retrofit.RetrofitClient
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class CurrentScheduleViewModel : ViewModel() {
-    private val job = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
+class CurrentScheduleViewModel(private val app: Application) : ViewModel() {
+    private val database = getInstance(app)
 
-    val scheduler = MutableLiveData<Any>()
 
-    fun fetchSchedule(context: Context) {
-        coroutineScope.launch {
-            try {
-               val gr = RetrofitClient.getListApi().fetchGroupList()
-
-            } catch (e: Exception) {
-                Log.e("hui", e.toString())
+    fun fetchSchedule() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                val db = getInstance(app).scheduleDao
+                val schedule = RetrofitClient.getScheduleApi().fetchEployeeScheduleById(500590)
+                    .toScheduleModelEntityList()
+                db.insertScheduleList(schedule)
+                val s = db.fetchScheduleListByEmployeeId(500590)
+                val е = db.fetchScheduleListByGroupName("851001")
             }
+        }
+    }
 
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(CurrentScheduleViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return CurrentScheduleViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
 }

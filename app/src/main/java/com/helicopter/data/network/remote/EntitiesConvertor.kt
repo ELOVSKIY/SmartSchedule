@@ -9,9 +9,9 @@ fun ScheduleResponse.toScheduleModelEntityList(): List<ScheduleModelEntity> {
     for (schedule in schedules) {
         for (scheduleModel in schedule.schedule) {
             val scheduleModelEntity = ScheduleModelEntity(
-                0L, schedule.weekDay, this.studentGroup?.groupId,
-                this.employee?.employeeId,
-                this.studentGroup?.name, scheduleModel.auditory,
+                schedule.weekDay, this.studentGroup?.groupId ?: 0L,
+                this.employee?.employeeId ?: 0L,
+                this.studentGroup?.name ?: "", scheduleModel.auditory,
                 if (scheduleModel.employee.isNotEmpty()) scheduleModel.employee[0] else null,
                 scheduleModel.endLessonTime, scheduleModel.lessonTime, scheduleModel.lessonType,
                 scheduleModel.note ?: "", scheduleModel.numSubgroup, scheduleModel.startLessonTime,

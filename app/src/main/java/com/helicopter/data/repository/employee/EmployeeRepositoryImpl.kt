@@ -20,4 +20,5 @@ class EmployeeRepositoryImpl(private val employeeDao: EmployeeDao) : EmployeeRep
             employeeDao.insertEmployeeList(employeeList)
         }
     }
+
 }
