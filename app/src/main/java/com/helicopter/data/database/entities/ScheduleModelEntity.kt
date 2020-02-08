@@ -10,11 +10,6 @@ import com.helicopter.data.network.models.Employee
 )
 @TypeConverters(ListConverter::class)
 data class ScheduleModelEntity(
-//    @PrimaryKey(autoGenerate = true)
-//    @ColumnInfo(name = "schedule_model_id")
-//    val scheduleModelId: Long,
-
-
     @ColumnInfo(name = "week_day")
     val weekDay: String,
     @ColumnInfo(name = "group_id")
