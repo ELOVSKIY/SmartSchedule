@@ -1,4 +1,4 @@
-package com.helicopter.ui.settings
+package com.helicopter.ui.fragments.settings
 
 import androidx.lifecycle.ViewModel
 
