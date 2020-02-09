@@ -1,4 +1,4 @@
-package com.helicopter.ui.fragments.current
+package com.helicopter.ui.fragments.schedule
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import com.helicopter.data.database.database.getInstance
 import com.helicopter.data.repository.schedule.ScheduleRepositoryImpl
 import kotlinx.coroutines.*
 
-class CurrentScheduleViewModel(private val app: Application) : ViewModel() {
+class ScheduleViewModel(private val app: Application) : ViewModel() {
     private val database = getInstance(app)
     private val repository = ScheduleRepositoryImpl(database.scheduleDao)
 
@@ -22,9 +22,9 @@ class CurrentScheduleViewModel(private val app: Application) : ViewModel() {
 
     class Factory(private val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CurrentScheduleViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(ScheduleViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CurrentScheduleViewModel(app) as T
+                return ScheduleViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

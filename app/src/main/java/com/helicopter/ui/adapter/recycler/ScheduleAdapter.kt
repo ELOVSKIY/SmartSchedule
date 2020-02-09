@@ -1,4 +1,4 @@
-package com.helicopter.ui.adapter
+package com.helicopter.ui.adapter.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.helicopter.databinding.EmployeeScheduleItemBinding
 import com.helicopter.databinding.GroupScheduleItemBinding
 import com.helicopter.domain.models.ScheduleDomainModel
-import com.helicopter.ui.fragments.alarm.AlarmFragment
 import java.lang.IllegalArgumentException
-import java.util.zip.Inflater
 
 private const val GROUP_SCHEDULE = 0
 private const val EMPLOYEE_SCHEDULE = 1
@@ -25,10 +23,14 @@ class ScheduleAdapter: ListAdapter<ScheduleDomainModel, RecyclerView.ViewHolder>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
             GROUP_SCHEDULE -> {
-                GroupScheduleViewHolder.from(parent)
+                GroupScheduleViewHolder.from(
+                    parent
+                )
             }
             EMPLOYEE_SCHEDULE -> {
-                EmployeeScheduleViewHolder.from(parent)
+                EmployeeScheduleViewHolder.from(
+                    parent
+                )
             }
             else -> throw IllegalArgumentException()
         }
@@ -61,28 +63,32 @@ class ScheduleAdapter: ListAdapter<ScheduleDomainModel, RecyclerView.ViewHolder>
 
 class GroupScheduleViewHolder(private val binding: GroupScheduleItemBinding): RecyclerView.ViewHolder(binding.root){
     fun bind(schedule: ScheduleDomainModel){
-
+        binding.schedule = schedule
     }
 
     companion object{
         fun from(parent: ViewGroup): RecyclerView.ViewHolder{
             val inflater = LayoutInflater.from(parent.context)
             val binding = GroupScheduleItemBinding.inflate(inflater, parent, false)
-            return GroupScheduleViewHolder(binding)
+            return GroupScheduleViewHolder(
+                binding
+            )
         }
     }
 }
 
 class EmployeeScheduleViewHolder(private val binding: EmployeeScheduleItemBinding): RecyclerView.ViewHolder(binding.root){
     fun bind(schedule: ScheduleDomainModel){
-
+        binding.schedule = schedule
     }
 
     companion object{
         fun from(parent: ViewGroup): RecyclerView.ViewHolder{
             val inflater = LayoutInflater.from(parent.context)
             val binding = EmployeeScheduleItemBinding.inflate(inflater, parent, false)
-            return EmployeeScheduleViewHolder(binding)
+            return EmployeeScheduleViewHolder(
+                binding
+            )
         }
     }
 }
