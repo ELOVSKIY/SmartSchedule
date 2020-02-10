@@ -24,7 +24,7 @@ class ScheduleFragment : Fragment() {
         viewModel = ViewModelProvider(this, ScheduleViewModel.Factory(activity!!.application)).get(ScheduleViewModel::class.java)
         binding = ScheduleFragmentBinding.inflate(inflater, container, false)
 
-        val schedulePagesAdapter = SchedulePagesAdapter(activity!!.supportFragmentManager)
+        val schedulePagesAdapter = SchedulePagesAdapter(activity!!.supportFragmentManager, resources)
         binding.pages.adapter = schedulePagesAdapter
         binding.tabs.setupWithViewPager(binding.pages)
 
