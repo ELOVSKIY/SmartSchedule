@@ -1,4 +1,4 @@
-package com.helicopter.ui.alarm
+package com.helicopter.ui.fragments.alarm
 
 import androidx.lifecycle.ViewModel
 

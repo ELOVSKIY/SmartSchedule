@@ -1,8 +1,7 @@
-package com.helicopter.ui.main
+package com.helicopter.ui.fragments.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.helicopter.R
@@ -18,4 +17,6 @@ class MainActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this, R.id.navHost)
         bottomNavigation.setupWithNavController(navController)
     }
+
+
 }

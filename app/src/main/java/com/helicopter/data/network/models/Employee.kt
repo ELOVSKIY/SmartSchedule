@@ -1,13 +1,32 @@
 package com.helicopter.data.network.models
 
+import com.google.gson.annotations.SerializedName
+import com.helicopter.data.database.entities.EmployeeEntity
+
 data class Employee(
-    val academicDepartment: List<String>,
-    val calendarId: String,
-    val fio: String,
     val firstName: String,
-    val id: Int,
     val lastName: String,
     val middleName: String,
-    val photoLink: String,
-    val rank: String
+    val rank: String?,
+    val photoLink: String?,
+    val calendarId: String?,
+    val academicDepartment: List<String>,
+    @SerializedName("id")
+    val employeeId: Long,
+    @SerializedName("fio")
+    val fullName: String
 )
+
+fun List<Employee>.asDatabaseEntities(): List<EmployeeEntity>{
+    return this.map { EmployeeEntity(
+        it.employeeId,
+        it.firstName,
+        it.lastName,
+        it.middleName,
+        it.rank,
+        it.photoLink,
+        it.calendarId,
+        it.academicDepartment,
+        it.fullName
+    ) }
+}

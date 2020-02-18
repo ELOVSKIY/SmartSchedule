@@ -11,7 +11,7 @@ data class ScheduleModel(
     val endLessonTime: String,
     val lessonTime: String,
     val lessonType: String,
-    val note: String,
+    val note: String?,
     val numSubgroup: Int,
     val startLessonTime: String,
     val studentGroup: List<String>,
