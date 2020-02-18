@@ -13,5 +13,7 @@
     <string name="wednesday">Среда</string>
     <string name="thursday">Четверг</string>
     <string name="friday">Пятница</string>
-    <string name="suturday">Суббота</string>
+    <string name="saturday">Суббота</string>
+
+    <string name="first_middle_names">1$s, 2$s</string>
 </resources>

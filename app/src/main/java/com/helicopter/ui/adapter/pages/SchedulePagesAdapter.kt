@@ -35,7 +35,7 @@ class SchedulePagesAdapter(fragmentManager: FragmentManager, val res: Resources)
             4 -> res.getString(R.string.wednesday)
             5 -> res.getString(R.string.thursday)
             6 -> res.getString(R.string.friday)
-            7 -> res.getString(R.string.suturday)
+            7 -> res.getString(R.string.saturday)
             else -> throw IllegalArgumentException()
         }
     }
