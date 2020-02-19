@@ -1,6 +1,8 @@
 package com.helicopter.ui.adapter.pages
 
+import android.app.Application
 import android.content.res.Resources
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -9,18 +11,20 @@ import com.helicopter.ui.fragments.schedule.day.DayScheduleFragment
 import java.lang.IllegalArgumentException
 import java.util.*
 
-class SchedulePagesAdapter(fragmentManager: FragmentManager,private val res: Resources
+private const val DAY_COUNT = 30
+
+class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: Application, currentWeekNumb: Int = 1
     ): FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
-
-
-
     override fun getItem(position: Int): Fragment {
-        return DayScheduleFragment()
+        val args = Bundle()
+        return DayScheduleFragment().apply {
+            this.arguments = args
+        }
     }
 
     override fun getCount(): Int {
-        return 30
+        return DAY_COUNT
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
@@ -34,13 +38,13 @@ class SchedulePagesAdapter(fragmentManager: FragmentManager,private val res: Res
 
     private fun getDayOfWeek(day: Int): String{
         return when(day){
-            1 -> res.getString(R.string.sunday)
-            2 -> res.getString(R.string.monday)
-            3 -> res.getString(R.string.tuesday)
-            4 -> res.getString(R.string.wednesday)
-            5 -> res.getString(R.string.thursday)
-            6 -> res.getString(R.string.friday)
-            7 -> res.getString(R.string.saturday)
+            1 -> app.getString(R.string.sunday)
+            2 -> app.getString(R.string.monday)
+            3 -> app.getString(R.string.tuesday)
+            4 -> app.getString(R.string.wednesday)
+            5 -> app.getString(R.string.thursday)
+            6 -> app.getString(R.string.friday)
+            7 -> app.getString(R.string.saturday)
             else -> throw IllegalArgumentException()
         }
     }
@@ -49,7 +53,7 @@ class SchedulePagesAdapter(fragmentManager: FragmentManager,private val res: Res
         val strDate = date.toString()
         return if (strDate.length == 1){
             "0$date"
-        }else{
+        }else {
             "$date"
         }
     }
