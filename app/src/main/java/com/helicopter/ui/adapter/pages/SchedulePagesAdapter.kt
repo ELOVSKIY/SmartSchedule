@@ -11,6 +11,10 @@ import java.util.*
 
 class SchedulePagesAdapter(fragmentManager: FragmentManager,private val res: Resources
     ): FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+
+
+
+
     override fun getItem(position: Int): Fragment {
         return DayScheduleFragment()
     }

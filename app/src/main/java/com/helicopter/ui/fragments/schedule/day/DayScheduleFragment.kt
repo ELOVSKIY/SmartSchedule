@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.helicopter.R
+import com.helicopter.databinding.DayScheduleFragmentBinding
 
 
 class DayScheduleFragment : Fragment() {
@@ -15,7 +15,8 @@ class DayScheduleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_day_schedule, container, false)
+        val binding = DayScheduleFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 }

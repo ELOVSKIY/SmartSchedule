@@ -1,19 +1,18 @@
 package com.helicopter.ui.fragments.schedule
 
 import android.app.Application
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.helicopter.data.database.database.getInstance
 import com.helicopter.data.repository.schedule.ScheduleRepositoryImpl
 import kotlinx.coroutines.*
 
-class ScheduleViewModel(private val app: Application) : ViewModel() {
+class ScheduleViewModel(private val app: Application) : ViewModel(), LifecycleObserver {
     private val database = getInstance(app)
     private val repository = ScheduleRepositoryImpl(database.scheduleDao)
 
     val schedule = repository.schedule
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun fetchSchedule() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.fetchScheduleByGroupName("851001")

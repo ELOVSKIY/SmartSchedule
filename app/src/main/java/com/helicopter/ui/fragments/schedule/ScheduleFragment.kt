@@ -23,6 +23,8 @@ class ScheduleFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProvider(this, ScheduleViewModel.Factory(activity!!.application)).get(ScheduleViewModel::class.java)
         binding = ScheduleFragmentBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
 
         val schedulePagesAdapter = SchedulePagesAdapter(activity!!.supportFragmentManager, resources)
         binding.pages.adapter = schedulePagesAdapter
