@@ -28,7 +28,7 @@ class ScheduleFragment : ObservableFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
 
-        val schedulePagesAdapter = SchedulePagesAdapter(activity!!.supportFragmentManager, resources)
+        val schedulePagesAdapter = SchedulePagesAdapter(activity!!.supportFragmentManager, activity!!.application)
         binding.pages.adapter = schedulePagesAdapter
         binding.tabs.setupWithViewPager(binding.pages)
 

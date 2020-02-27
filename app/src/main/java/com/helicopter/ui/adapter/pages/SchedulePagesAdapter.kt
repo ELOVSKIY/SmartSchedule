@@ -13,7 +13,7 @@ import java.util.*
 
 private const val DAY_COUNT = 30
 
-class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: Application, currentWeekNumb: Int = 1
+class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: Application
     ): FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
     override fun getItem(position: Int): Fragment {

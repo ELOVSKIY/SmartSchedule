@@ -19,5 +19,6 @@ data class ScheduleDomainModel (
     val subject: String,
     val weekNumber: List<Int>,
     val correspondence: Boolean,
-    val isGroupSchedule: Boolean
+    val isGroupSchedule: Boolean,
+    val lastUpdateTime: Int
 )
