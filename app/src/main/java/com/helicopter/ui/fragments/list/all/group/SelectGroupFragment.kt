@@ -8,22 +8,26 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
 import com.helicopter.R
+import com.helicopter.databinding.SelectGroupFragmentBinding
+import com.helicopter.ui.adapter.recycler.GroupAdapter
+import com.helicopter.ui.fragments.ObservableFragment
 
-class SelectGroupFragment : Fragment() {
+class SelectGroupFragment : ObservableFragment() {
 
     private lateinit var viewModel: SelectGroupViewModel
+    private lateinit var binding: SelectGroupFragmentBinding
+    private lateinit var groupAdapter: GroupAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.select_group_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SelectGroupViewModel::class.java)
-        // TODO: Use the ViewModel
+        groupAdapter = GroupAdapter()
+        val binding = SelectGroupFragmentBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.groupRecycler.adapter = groupAdapter
+        return binding.root
     }
 
 }
