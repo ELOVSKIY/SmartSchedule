@@ -18,4 +18,7 @@
     <string name="first_middle_names">1$s, 2$s</string>
     <string name="list">List</string>
     <string name="employee">Преподователи</string>
+    <string name="course">Курс:</string>
+    <string name="faculty">Факультет:</string>
+    <string name="speciality">Специальность</string>
 </resources>
