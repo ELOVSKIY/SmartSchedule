@@ -1,4 +1,4 @@
-package com.helicopter.ui.fragments.list.group
+package com.helicopter.ui.fragments.list.all.group
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,20 +9,21 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.helicopter.R
 
-class GroupListFragment : Fragment() {
+class SelectGroupFragment : Fragment() {
 
-    private lateinit var viewModel: GroupListViewModel
+    private lateinit var viewModel: SelectGroupViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.group_list_fragment, container, false)
+        return inflater.inflate(R.layout.select_group_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(GroupListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SelectGroupViewModel::class.java)
+        // TODO: Use the ViewModel
     }
 
 }

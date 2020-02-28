@@ -8,8 +8,8 @@
         android:icon="@drawable/baseline_format_24" />
 
     <item
-        android:id="@+id/GroupFragment"
-        android:title="@string/groups"
+        android:id="@+id/ListHolderFragment"
+        android:title="@string/list"
         android:icon="@drawable/baseline_format_24" />
 
     <item

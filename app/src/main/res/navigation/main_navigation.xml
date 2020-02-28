@@ -8,16 +8,32 @@
     <fragment
         android:id="@+id/CurrentScheduleFragment"
         android:name="com.helicopter.ui.fragments.schedule.ScheduleFragment"
-        android:label="current_schedule_fragment"
         tools:layout="@layout/schedule_fragment" />
     <fragment
         android:id="@+id/AlarmFragment"
         android:name="com.helicopter.ui.fragments.alarm.AlarmFragment"
-        android:label="alarm_fragment"
         tools:layout="@layout/alarm_fragment" />
     <fragment
         android:id="@+id/SettingsFragment"
         android:name="com.helicopter.ui.fragments.settings.SettingsFragment"
-        android:label="settings_fragment"
         tools:layout="@layout/settings_fragment" />
+    <fragment
+        android:id="@+id/ListHolderFragment"
+        android:name="com.helicopter.ui.fragments.list.ListHolderFragment"
+        tools:layout="@layout/list_holder_fragment" >
+        <action
+            android:id="@+id/action_ListHolderFragment_to_SelectEmployeeFragment"
+            app:destination="@id/SelectEmployeeFragment" />
+        <action
+            android:id="@+id/action_ListHolderFragment_to_SelectGroupFragment"
+            app:destination="@id/SelectGroupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SelectEmployeeFragment"
+        android:name="com.helicopter.ui.fragments.list.all.employee.SelectEmployeeFragment"
+        tools:layout="@layout/select_employee_fragment" />
+    <fragment
+        android:id="@+id/SelectGroupFragment"
+        android:name="com.helicopter.ui.fragments.list.all.group.SelectGroupFragment"
+        tools:layout="@layout/select_group_fragment" />
 </navigation>
