@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BSUIR SMART CLOCK</string>
     <string name="schedule">Schedule</string>
-    <string name="groups">Groups</string>
+    <string name="groups">Группы</string>
     <string name="alarm">Alarm</string>
     <string name="settings">Settings</string>
 
@@ -17,4 +17,5 @@
 
     <string name="first_middle_names">1$s, 2$s</string>
     <string name="list">List</string>
+    <string name="employee">Преподователи</string>
 </resources>

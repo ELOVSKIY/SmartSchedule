@@ -8,21 +8,20 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
 import com.helicopter.R
+import com.helicopter.databinding.GroupListFragmentBinding
 
 class GroupListFragment : Fragment() {
 
     private lateinit var viewModel: GroupListViewModel
+    private lateinit var binding: GroupListFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.group_list_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(GroupListViewModel::class.java)
+        binding = GroupListFragmentBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        return binding.root
     }
-
 }

@@ -1,18 +1,15 @@
 package com.helicopter.ui.fragments.schedule
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
-import com.helicopter.R
 import com.helicopter.databinding.ScheduleFragmentBinding
 import com.helicopter.ui.adapter.pages.SchedulePagesAdapter
 import com.helicopter.ui.fragments.ObservableFragment
-import kotlinx.android.synthetic.main.schedule_fragment.*
 
 class ScheduleFragment : ObservableFragment() {
 

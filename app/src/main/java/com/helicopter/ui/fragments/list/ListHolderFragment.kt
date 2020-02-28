@@ -7,23 +7,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
-import com.helicopter.R
+import com.helicopter.databinding.ListHolderFragmentBinding
+import com.helicopter.ui.adapter.pages.ListPagesAdapter
 
 class ListHolderFragment : Fragment() {
 
     private lateinit var viewModel: ListHolderViewModel
+    private lateinit var binding: ListHolderFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.list_holder_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ListHolderViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding = ListHolderFragmentBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+
+        val listPagesAdapter = ListPagesAdapter(childFragmentManager, activity!!.application)
+        binding.pages.adapter = listPagesAdapter
+        binding.listTabs.setupWithViewPager(binding.pages)
+
+
+        return binding.root
     }
 
 }
