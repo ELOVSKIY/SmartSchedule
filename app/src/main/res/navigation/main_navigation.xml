@@ -20,20 +20,6 @@
     <fragment
         android:id="@+id/ListHolderFragment"
         android:name="com.helicopter.ui.fragments.list.ListHolderFragment"
-        tools:layout="@layout/list_holder_fragment" >
-        <action
-            android:id="@+id/action_ListHolderFragment_to_SelectEmployeeFragment"
-            app:destination="@id/SelectEmployeeFragment" />
-        <action
-            android:id="@+id/action_ListHolderFragment_to_SelectGroupFragment"
-            app:destination="@id/SelectGroupFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SelectEmployeeFragment"
-        android:name="com.helicopter.ui.fragments.list.all.employee.SelectEmployeeFragment"
-        tools:layout="@layout/select_employee_fragment" />
-    <fragment
-        android:id="@+id/SelectGroupFragment"
-        android:name="com.helicopter.ui.fragments.list.all.group.SelectGroupFragment"
-        tools:layout="@layout/select_group_fragment" />
+        tools:layout="@layout/list_holder_fragment" />
+
 </navigation>

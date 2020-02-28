@@ -1,5 +1,6 @@
 package com.helicopter.ui.fragments.list
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,9 @@ import com.helicopter.R
 import com.helicopter.databinding.ListHolderFragmentBinding
 import com.helicopter.ui.adapter.pages.ListPagesAdapter
 import com.helicopter.ui.fragments.ObservableFragment
+import com.helicopter.ui.fragments.list.all.employee.SelectEmployeeActivity
+import com.helicopter.ui.fragments.list.all.group.SelectGroupActivity
+import java.lang.IllegalArgumentException
 
 class ListHolderFragment : ObservableFragment() {
 
@@ -34,16 +38,19 @@ class ListHolderFragment : ObservableFragment() {
     }
 
     override fun setObservers() {
-        viewModel.navigateToSelect.observe(viewLifecycleOwner, Observer{
-            viewModel.onNavigateToSelect()
-            val navController = view!!.findNavController()
-            when (binding.pages.currentItem){
-                0 -> {
-                    navController.navigate(R.id.action_ListHolderFragment_to_SelectGroupFragment)
+        viewModel.navigateToSelect.observe(viewLifecycleOwner, Observer { navigate ->
+            if (navigate) {
+                viewModel.onNavigateToSelect()
+                val intent = when (binding.pages.currentItem) {
+                    0 -> {
+                        Intent(context, SelectGroupActivity::class.java)
+                    }
+                    1 -> {
+                        Intent(context, SelectEmployeeActivity::class.java)
+                    }
+                    else -> throw IllegalArgumentException()
                 }
-                1 ->{
-                    navController.navigate(R.id.action_ListHolderFragment_to_SelectEmployeeFragment)
-                }
+                activity?.startActivity(intent)
             }
         })
     }
