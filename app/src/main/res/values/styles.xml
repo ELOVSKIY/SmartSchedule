@@ -7,6 +7,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="FloatingActionButton" parent="AppTheme">
+        <item name="backgroundTint">@color/floatActionBarColor</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+
+    <style name="FloatingActionButton.Plus" parent="FloatingActionButton">
+        <item name="srcCompat">@drawable/ic_plus_24_svg</item>
+    </style>
+
     <style name="TextAppearance.Title" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/titleTextColor</item>

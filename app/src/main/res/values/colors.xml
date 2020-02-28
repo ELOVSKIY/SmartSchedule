@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="titleTextColor">#000000</color>
     <color name="subtitleTextColor">#6F6E6E</color>
+    <color name="floatActionBarColor">#69AB1D</color>
+    <color name="iconColor">#FFFFFF</color>
 </resources>
