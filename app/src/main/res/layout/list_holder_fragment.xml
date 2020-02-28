@@ -45,6 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.onFabClick()}"
             style="@style/FloatingActionButton.Plus" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
