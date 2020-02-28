@@ -6,6 +6,6 @@ data class StudentGroupDomainModel (
     val name: String,
 //    val facultyId: Long,
     val course: Int,
-    val calendarId: String
+    val calendarId: String?
 //    val specialityDepartmentEducationFormId: Int
 )

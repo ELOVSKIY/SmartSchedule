@@ -1,48 +1,47 @@
 package com.helicopter.data.repository.list
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.map
 import com.helicopter.data.database.database.ScheduleDatabase
 import com.helicopter.data.database.entities.EmployeeEntity
 import com.helicopter.data.database.entities.FacultyEntity
 import com.helicopter.data.database.entities.SpecialityEntity
-import com.helicopter.data.database.entities.StudentGroupEntity
+import com.helicopter.data.database.entities.asDomainModel
 import com.helicopter.data.network.models.asDatabaseEntities
 import com.helicopter.data.network.retrofit.RetrofitClient
+import com.helicopter.domain.models.StudentGroupDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepository{
-    override suspend fun fetchStudentGroupList(): LiveData<List<StudentGroupEntity>> {
-        refreshStudentGroupList()
-        return database.studentGroupDao.fetchGroupList()
+    override fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>> {
+        return Transformations.map(database.studentGroupDao.fetchGroupList()){
+            it.asDomainModel()
+        }
     }
 
-    override suspend fun fetchEmployeeList(): LiveData<List<EmployeeEntity>> {
-        refreshEmployeeList()
+    override fun fetchEmployeeList(): LiveData<List<EmployeeEntity>> {
         return database.employeeDao.fetchEmployeeList()
     }
 
-    override suspend fun fetchFacultyList(): LiveData<List<FacultyEntity>> {
-        refreshFacultyList()
+    override fun fetchFacultyList(): LiveData<List<FacultyEntity>> {
         return database.facultyDao.fetchFacultyList()
     }
 
-    override suspend fun fetchFacultyById(facultyId: Long): LiveData<FacultyEntity> {
-        refreshFacultyList()
+    override fun fetchFacultyById(facultyId: Long): LiveData<FacultyEntity> {
         return database.facultyDao.fetchFacultyByid(facultyId)
     }
 
-    override suspend fun fetchSpecialityList(): LiveData<List<SpecialityEntity>> {
-        refreshSpecialityList()
+    override fun fetchSpecialityList(): LiveData<List<SpecialityEntity>> {
         return database.specialityDao.fetchSpecialityList()
     }
 
-    override suspend fun fetchSpecialityById(specialityId: Long): LiveData<SpecialityEntity> {
-        refreshSpecialityList()
+    override fun fetchSpecialityById(specialityId: Long): LiveData<SpecialityEntity> {
         return database.specialityDao.fetchSpecialityById(specialityId)
     }
 
-    private suspend fun refreshStudentGroupList(){
+    suspend fun refreshStudentGroupList(){
         withContext(Dispatchers.IO){
             val groupList = RetrofitClient.getListApi().fetchGroupList()
                 .asDatabaseEntities()
@@ -50,7 +49,7 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
         }
     }
 
-    private suspend fun refreshFacultyList(){
+    suspend fun refreshFacultyList(){
         withContext(Dispatchers.IO){
             val faculties = RetrofitClient.getListApi().fetchFacultyList().asDatabaseEntities()
             database.facultyDao.insertFacultyList(faculties)
@@ -58,14 +57,14 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
     }
 
 
-    private suspend fun refreshEmployeeList(){
+    suspend fun refreshEmployeeList(){
         withContext(Dispatchers.IO){
             val employeeList = RetrofitClient.getListApi().fetchEmployeeList().asDatabaseEntities()
             database.employeeDao.insertEmployeeList(employeeList)
         }
     }
 
-    private suspend fun refreshSpecialityList(){
+    suspend fun refreshSpecialityList(){
         withContext(Dispatchers.IO){
             val specialities = RetrofitClient.getListApi().fetchSpecialityList()
                 .asDatabaseEntities()

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.helicopter.R
@@ -22,7 +23,8 @@ class SelectGroupFragment : ObservableFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(SelectGroupViewModel::class.java)
+        viewModel = ViewModelProvider(this, SelectGroupViewModel.Factory(activity!!.application))
+            .get(SelectGroupViewModel::class.java)
         groupAdapter = GroupAdapter()
         val binding = SelectGroupFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -30,4 +32,12 @@ class SelectGroupFragment : ObservableFragment() {
         return binding.root
     }
 
+
+    override fun setObservers() {
+        viewModel.studentGroupList.observe(viewLifecycleOwner, Observer {groupList ->
+            groupList?.let{
+                groupAdapter.submitList(groupList)
+            }
+        })
+    }
 }

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.helicopter.data.database.entities.StudentGroupEntity
 
 data class StudentGroup(
-    val calendarId: String,
+    val calendarId: String?,
     val course: Int,
     val facultyId: Long,
     @SerializedName("id")
