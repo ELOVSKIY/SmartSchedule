@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="studentGroup"
-            type="com.helicopter.domain.models.StudentGroupDomainModel" />
+            name="studentGroupInfo"
+            type="com.helicopter.domain.models.StudentGroupInfoDomainModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/default_margin"
-                android:text="@{studentGroup.name}"
+                android:text="@{studentGroupInfo.studentGroup.name}"
                 tools:text="851001"
                 android:textAppearance="@style/TextAppearance.Title"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="@{String.valueOf(studentGroup.course)}"
+                android:text="@{String.valueOf(studentGroupInfo.studentGroup.course)}"
                 tools:text="2"
                 android:textAppearance="@style/TextAppearance.Title.Subtitle"
                 app:layout_constraintBottom_toBottomOf="@+id/course_text"
@@ -74,11 +74,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
-                tools:text="КСИС"
+                android:text="@{studentGroupInfo.faculty.abbrev}"
                 app:layout_constraintBottom_toBottomOf="@+id/faculty_text"
                 app:layout_constraintStart_toEndOf="@+id/faculty_text"
                 app:layout_constraintTop_toTopOf="@+id/faculty_text"
-                app:layout_constraintVertical_bias="0.0" />
+                tools:text="КСИС"/>
 
             <TextView
                 android:id="@+id/speciality_text"
@@ -97,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
                 android:singleLine="true"
+                android:text="@{studentGroupInfo.speciality.name}"
                 app:layout_constraintBottom_toBottomOf="@+id/speciality_text"
                 app:layout_constraintEnd_toEndOf="@+id/course"
                 app:layout_constraintStart_toEndOf="@+id/speciality_text"

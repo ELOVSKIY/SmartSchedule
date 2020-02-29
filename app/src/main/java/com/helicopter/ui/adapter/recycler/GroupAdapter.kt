@@ -7,10 +7,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.helicopter.databinding.GroupItemBinding
 import com.helicopter.domain.models.StudentGroupDomainModel
+import com.helicopter.domain.models.StudentGroupInfoDomainModel
+import com.helicopter.generated.callback.OnClickListener
 import java.lang.IllegalArgumentException
 
 
-class GroupAdapter : ListAdapter<StudentGroupDomainModel, StudentGroupViewHolder>(this) {
+class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHolder>(this) {
+
+    private var listener: (groupId: Long) -> Unit = {}
+
+    fun setOnClickListener(listener: (groupId: Long) -> Unit){
+        this.listener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentGroupViewHolder {
         return StudentGroupViewHolder.create(parent)
@@ -18,18 +26,18 @@ class GroupAdapter : ListAdapter<StudentGroupDomainModel, StudentGroupViewHolder
 
     override fun onBindViewHolder(holder: StudentGroupViewHolder, position: Int) {
         val studentGroup = getItem(position)
-        holder.bind(studentGroup)
+        holder.bind(studentGroup, listener)
     }
 
-    companion object : DiffUtil.ItemCallback<StudentGroupDomainModel>() {
+    companion object : DiffUtil.ItemCallback<StudentGroupInfoDomainModel>() {
         override fun areItemsTheSame(
-            oldItem: StudentGroupDomainModel, newItem: StudentGroupDomainModel
+            oldItem: StudentGroupInfoDomainModel, newItem: StudentGroupInfoDomainModel
         ): Boolean {
-            return oldItem.groupId == newItem.groupId
+            return oldItem.studentGroup.groupId == newItem.studentGroup.groupId
         }
 
         override fun areContentsTheSame(
-            oldItem: StudentGroupDomainModel, newItem: StudentGroupDomainModel
+            oldItem: StudentGroupInfoDomainModel, newItem: StudentGroupInfoDomainModel
         ): Boolean {
             return oldItem == newItem
         }
@@ -38,8 +46,11 @@ class GroupAdapter : ListAdapter<StudentGroupDomainModel, StudentGroupViewHolder
 
 class StudentGroupViewHolder(private val binding: GroupItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(studentGroup: StudentGroupDomainModel) {
-        binding.studentGroup = studentGroup
+    fun bind(studentGroup: StudentGroupInfoDomainModel, listener: (groupId: Long) -> Unit) {
+        binding.studentGroupInfo = studentGroup
+        binding.root.setOnClickListener {
+            listener(studentGroup.studentGroup.groupId)
+        }
         binding.executePendingBindings()
     }
 

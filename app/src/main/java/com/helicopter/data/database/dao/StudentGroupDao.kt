@@ -21,7 +21,7 @@ interface StudentGroupDao {
     fun updateStudyGroupList(groups: List<StudentGroupEntity>)
 
     @Query("SELECT * FROM student_group WHERE group_id = :groupId")
-    fun fetchStudyGroupById(groupId: Int): LiveData<StudentGroupEntity>
+    fun fetchStudyGroupById(groupId: Long): LiveData<StudentGroupEntity>
 
     @Query("SELECT * FROM student_group WHERE group_name = :groupName")
     fun fetchStudyGroupByName(groupName: String): LiveData<StudentGroupEntity>
@@ -29,6 +29,12 @@ interface StudentGroupDao {
     @Query("SELECT * FROM student_group ORDER BY group_name")
     fun fetchGroupList(): LiveData<List<StudentGroupEntity>>
 
-    @Query("SELECT * FROM student_group")
-    fun fetchWithGroupInfo(): LiveData<List<StudentGroupInfoEntity>>
+    @Query("SELECT * FROM student_group WHERE selected=0")
+    fun fetchGroupInfo(): LiveData<List<StudentGroupInfoEntity>>
+
+    @Query("SELECT * FROM student_group WHERE selected=1")
+    fun fetchSelectedGroupInfo(): LiveData<List<StudentGroupInfoEntity>>
+
+    @Query("UPDATE student_group SET selected=NOT SELECTED WHERE group_id = :groupId")
+    fun changeSelectedById(groupId: Long)
 }

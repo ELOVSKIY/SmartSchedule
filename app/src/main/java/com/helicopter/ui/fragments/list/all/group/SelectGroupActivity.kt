@@ -23,6 +23,9 @@ class SelectGroupActivity : AppCompatActivity() {
         val binding: ActivitySelectGroupBinding = DataBindingUtil.setContentView(
             this, R.layout.activity_select_group
         )
+        groupAdapter.setOnClickListener { groupId ->
+            viewModel.selectStudentGroup(groupId)
+        }
         binding.viewModel = viewModel
         binding.groupRecycler.adapter = groupAdapter
         setObservers()
@@ -32,6 +35,12 @@ class SelectGroupActivity : AppCompatActivity() {
         viewModel.studentGroupList.observe(this, Observer {groupList ->
             groupList?.let{
                 groupAdapter.submitList(groupList)
+            }
+        })
+        viewModel.groupSelected.observe(this, Observer {selected ->
+            if (selected){
+                viewModel.onGroupSelected()
+                finish()
             }
         })
     }

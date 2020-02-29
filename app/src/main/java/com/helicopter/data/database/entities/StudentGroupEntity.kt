@@ -19,7 +19,9 @@ data class StudentGroupEntity(
     @ColumnInfo(name = "calendar_id")
     val calendarId: String?,
     @ColumnInfo(name = "speciality_department_education_form_id")
-    val specialityDepartmentEducationFormId: Int
+    val specialityDepartmentEducationFormId: Int,
+    val selected: Boolean = false,
+    val mainSchedule : Boolean = false
 )
 
 fun List<StudentGroupEntity>.asDomainModel(): List<StudentGroupDomainModel> {

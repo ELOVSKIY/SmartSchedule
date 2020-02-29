@@ -6,7 +6,6 @@ import com.helicopter.data.database.database.ScheduleDatabase
 import com.helicopter.data.database.entities.FacultyEntity
 import com.helicopter.data.database.entities.SpecialityEntity
 import com.helicopter.data.database.entities.asDomainModel
-import com.helicopter.data.database.utils.StudentGroupInfoEntity
 import com.helicopter.data.database.utils.asDomainModel
 import com.helicopter.data.network.models.asDatabaseEntities
 import com.helicopter.data.network.retrofit.RetrofitClient
@@ -23,8 +22,8 @@ private const val TRY_AGAIN_TIMEOUT = 2_000L
 class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepository{
 
 
-    override suspend fun fetchStudentGroupInfo(): LiveData<List<StudentGroupInfoDomainModel>> {
-        return Transformations.map(database.studentGroupDao.fetchWithGroupInfo()){
+    override fun fetchStudentGroupInfo(): LiveData<List<StudentGroupInfoDomainModel>> {
+        return Transformations.map(database.studentGroupDao.fetchGroupInfo()){
                 it.asDomainModel()
         }
     }
@@ -111,6 +110,12 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
                 delay(TRY_AGAIN_TIMEOUT)
                 refreshSpecialityList()
             }
+        }
+    }
+
+    override suspend fun selectStudentGroup(groupId: Long) {
+        withContext(Dispatchers.IO){
+            database.studentGroupDao.changeSelectedById(groupId)
         }
     }
 }

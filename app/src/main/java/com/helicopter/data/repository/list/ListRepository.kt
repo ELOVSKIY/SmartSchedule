@@ -10,7 +10,7 @@ import com.helicopter.domain.models.StudentGroupInfoDomainModel
 
 interface ListRepository {
 
-    suspend fun fetchStudentGroupInfo():  LiveData<List<StudentGroupInfoDomainModel>>
+    fun fetchStudentGroupInfo():  LiveData<List<StudentGroupInfoDomainModel>>
 
     fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>>
 
@@ -23,4 +23,6 @@ interface ListRepository {
     fun fetchSpecialityList(): LiveData<List<SpecialityEntity>>
 
     fun fetchSpecialityById(specialityId: Long): LiveData<SpecialityEntity>
+
+    suspend fun selectStudentGroup(groupId: Long)
 }
