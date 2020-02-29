@@ -22,7 +22,7 @@ interface EmployeeDao {
     @Query("SELECT * FROM employee WHERE employee_id = :id")
     fun fetchEmployeeById(id: Int): LiveData<EmployeeEntity>
 
-    @Query("SELECT * FROM employee")
+    @Query("SELECT * FROM employee ORDER BY last_name")
     fun fetchEmployeeList(): LiveData<List<EmployeeEntity>>
 
 }
