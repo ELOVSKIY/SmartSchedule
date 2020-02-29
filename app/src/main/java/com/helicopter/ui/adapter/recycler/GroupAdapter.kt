@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.helicopter.databinding.GroupItemBinding
-import com.helicopter.domain.models.StudentGroupDomainModel
 import com.helicopter.domain.models.StudentGroupInfoDomainModel
-import com.helicopter.generated.callback.OnClickListener
-import java.lang.IllegalArgumentException
 
 
 class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHolder>(this) {
@@ -46,10 +43,10 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
 
 class StudentGroupViewHolder(private val binding: GroupItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(studentGroup: StudentGroupInfoDomainModel, listener: (groupId: Long) -> Unit) {
+    fun bind(studentGroup: StudentGroupInfoDomainModel, onClickListener: (groupId: Long) -> Unit) {
         binding.studentGroupInfo = studentGroup
         binding.root.setOnClickListener {
-            listener(studentGroup.studentGroup.groupId)
+            onClickListener(studentGroup.studentGroup.groupId)
         }
         binding.executePendingBindings()
     }

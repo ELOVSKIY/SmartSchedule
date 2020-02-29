@@ -12,6 +12,8 @@ interface ListRepository {
 
     fun fetchStudentGroupInfo():  LiveData<List<StudentGroupInfoDomainModel>>
 
+    fun fetchSelectedGroupInfo(): LiveData<List<StudentGroupInfoDomainModel>>
+
     fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>>
 
     fun fetchEmployeeList(): LiveData<List<EmployeeDomainModel>>
@@ -25,4 +27,6 @@ interface ListRepository {
     fun fetchSpecialityById(specialityId: Long): LiveData<SpecialityEntity>
 
     suspend fun selectStudentGroup(groupId: Long)
+
+    suspend fun unSelectStudentGroup(groupId: Long)
 }

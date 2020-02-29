@@ -28,6 +28,12 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
         }
     }
 
+    override fun fetchSelectedGroupInfo(): LiveData<List<StudentGroupInfoDomainModel>> {
+        return Transformations.map(database.studentGroupDao.fetchSelectedGroupInfo()){
+            it.asDomainModel()
+        }
+    }
+
     override fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>> {
         return Transformations.map(database.studentGroupDao.fetchGroupList()){
             it.asDomainModel()
@@ -114,6 +120,12 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
     }
 
     override suspend fun selectStudentGroup(groupId: Long) {
+        withContext(Dispatchers.IO){
+            database.studentGroupDao.changeSelectedById(groupId)
+        }
+    }
+
+    override suspend fun unSelectStudentGroup(groupId: Long) {
         withContext(Dispatchers.IO){
             database.studentGroupDao.changeSelectedById(groupId)
         }
