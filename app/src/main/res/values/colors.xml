@@ -7,4 +7,5 @@
     <color name="subtitleTextColor">#6F6E6E</color>
     <color name="floatActionBarColor">#69AB1D</color>
     <color name="iconColor">#FFFFFF</color>
+    <color name="darkIconColor">#000000</color>
 </resources>
