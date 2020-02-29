@@ -2,17 +2,17 @@ package com.helicopter.data.repository.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.map
 import com.helicopter.data.database.database.ScheduleDatabase
-import com.helicopter.data.database.entities.EmployeeEntity
 import com.helicopter.data.database.entities.FacultyEntity
 import com.helicopter.data.database.entities.SpecialityEntity
 import com.helicopter.data.database.entities.asDomainModel
-import com.helicopter.data.database.utils.GroupInformation
+import com.helicopter.data.database.utils.StudentGroupInfoEntity
+import com.helicopter.data.database.utils.asDomainModel
 import com.helicopter.data.network.models.asDatabaseEntities
 import com.helicopter.data.network.retrofit.RetrofitClient
 import com.helicopter.domain.models.EmployeeDomainModel
 import com.helicopter.domain.models.StudentGroupDomainModel
+import com.helicopter.domain.models.StudentGroupInfoDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -23,8 +23,10 @@ private const val TRY_AGAIN_TIMEOUT = 2_000L
 class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepository{
 
 
-    override suspend fun fetchStudentGroupInformation(): List<GroupInformation> {
-        return database.studentGroupDao.fetchWithGroupInfo()
+    override suspend fun fetchStudentGroupInfo(): LiveData<List<StudentGroupInfoDomainModel>> {
+        return Transformations.map(database.studentGroupDao.fetchWithGroupInfo()){
+                it.asDomainModel()
+        }
     }
 
     override fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>> {
@@ -32,8 +34,6 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
             it.asDomainModel()
         }
     }
-
-
 
     override fun fetchEmployeeList(): LiveData<List<EmployeeDomainModel>> {
         return Transformations.map(database.employeeDao.fetchEmployeeList()){
@@ -55,6 +55,12 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
 
     override fun fetchSpecialityById(specialityId: Long): LiveData<SpecialityEntity> {
         return database.specialityDao.fetchSpecialityById(specialityId)
+    }
+
+    suspend fun refreshStudentGroupInfo(){
+        refreshFacultyList()
+        refreshSpecialityList()
+        refreshStudentGroupList()
     }
 
     suspend fun refreshStudentGroupList(){
@@ -81,7 +87,6 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
             refreshFacultyList()
         }
     }
-
 
     suspend fun refreshEmployeeList(){
         withContext(Dispatchers.IO){

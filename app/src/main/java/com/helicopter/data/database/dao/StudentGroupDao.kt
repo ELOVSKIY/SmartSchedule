@@ -3,7 +3,7 @@ package com.helicopter.data.database.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.helicopter.data.database.entities.StudentGroupEntity
-import com.helicopter.data.database.utils.GroupInformation
+import com.helicopter.data.database.utils.StudentGroupInfoEntity
 
 @Dao
 interface StudentGroupDao {
@@ -30,5 +30,5 @@ interface StudentGroupDao {
     fun fetchGroupList(): LiveData<List<StudentGroupEntity>>
 
     @Query("SELECT * FROM student_group")
-    suspend fun fetchWithGroupInfo(): List<GroupInformation>
+    fun fetchWithGroupInfo(): LiveData<List<StudentGroupInfoEntity>>
 }

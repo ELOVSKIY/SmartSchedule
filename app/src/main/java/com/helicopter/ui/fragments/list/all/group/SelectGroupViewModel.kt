@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.helicopter.data.database.database.getInstance
-import com.helicopter.data.repository.list.ListRepository
 import com.helicopter.data.repository.list.ListRepositoryImpl
-import com.helicopter.data.repository.schedule.ScheduleRepositoryImpl
-import com.helicopter.ui.fragments.schedule.ScheduleViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -22,7 +19,7 @@ class SelectGroupViewModel(private val app: Application) : ViewModel() {
             repository.refreshStudentGroupList()
             repository.refreshSpecialityList()
             repository.refreshFacultyList()
-            val info = repository.fetchStudentGroupInformation()
+            val info = repository.fetchStudentGroupInfo()
             repository.refreshStudentGroupList()
 
         }

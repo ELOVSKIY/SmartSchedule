@@ -22,10 +22,17 @@ data class StudentGroupEntity(
     val specialityDepartmentEducationFormId: Int
 )
 
-fun List<StudentGroupEntity>.asDomainModel(): List<StudentGroupDomainModel>{
+fun List<StudentGroupEntity>.asDomainModel(): List<StudentGroupDomainModel> {
     return this.map {
         StudentGroupDomainModel(
             it.groupId, it.name, it.course, it.calendarId
         )
     }
+}
+
+fun StudentGroupEntity.asDomainModel(): StudentGroupDomainModel {
+    return StudentGroupDomainModel(
+        this.groupId, this.name, this.course, this.calendarId
+    )
+
 }

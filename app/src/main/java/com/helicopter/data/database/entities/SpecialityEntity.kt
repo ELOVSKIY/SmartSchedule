@@ -5,6 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.helicopter.data.network.models.EducationForm
+import com.helicopter.domain.models.SpecialityDomainModel
 
 @Entity(tableName = "speciality")
 data class SpecialityEntity(
@@ -19,3 +20,7 @@ data class SpecialityEntity(
     val facultyId: Long,
     val name: String
 )
+
+fun SpecialityEntity.asDomainModel(): SpecialityDomainModel{
+    return SpecialityDomainModel(this.abbrev, this.code, this.educationForm, this.facultyId, this.name)
+}

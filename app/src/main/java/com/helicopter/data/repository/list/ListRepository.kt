@@ -1,17 +1,16 @@
 package com.helicopter.data.repository.list
 
 import androidx.lifecycle.LiveData
-import com.helicopter.data.database.entities.EmployeeEntity
 import com.helicopter.data.database.entities.FacultyEntity
 import com.helicopter.data.database.entities.SpecialityEntity
-import com.helicopter.data.database.entities.StudentGroupEntity
-import com.helicopter.data.database.utils.GroupInformation
+import com.helicopter.data.database.utils.StudentGroupInfoEntity
 import com.helicopter.domain.models.EmployeeDomainModel
 import com.helicopter.domain.models.StudentGroupDomainModel
+import com.helicopter.domain.models.StudentGroupInfoDomainModel
 
 interface ListRepository {
 
-    suspend fun fetchStudentGroupInformation(): List<GroupInformation>
+    suspend fun fetchStudentGroupInfo():  LiveData<List<StudentGroupInfoDomainModel>>
 
     fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>>
 

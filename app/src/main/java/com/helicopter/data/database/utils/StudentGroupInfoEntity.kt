@@ -5,8 +5,10 @@ import androidx.room.Relation
 import com.helicopter.data.database.entities.FacultyEntity
 import com.helicopter.data.database.entities.SpecialityEntity
 import com.helicopter.data.database.entities.StudentGroupEntity
+import com.helicopter.data.database.entities.asDomainModel
+import com.helicopter.domain.models.StudentGroupInfoDomainModel as StudentGroupInfoDomainModel1
 
-data class GroupInformation (
+data class StudentGroupInfoEntity (
     @Embedded
     val studentGroup: StudentGroupEntity,
 
@@ -17,3 +19,14 @@ data class GroupInformation (
     val speciality: SpecialityEntity?
 
 )
+
+fun StudentGroupInfoEntity.asDomainModel(): StudentGroupInfoDomainModel1 {
+    return StudentGroupInfoDomainModel1(this.studentGroup.asDomainModel(),
+        this.faculty?.asDomainModel(), this.speciality?.asDomainModel())
+}
+
+fun List<StudentGroupInfoEntity>.asDomainModel(): List<StudentGroupInfoDomainModel1> {
+    return this.map {
+        it.asDomainModel()
+    }
+}
