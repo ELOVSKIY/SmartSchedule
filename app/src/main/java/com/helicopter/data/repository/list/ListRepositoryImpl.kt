@@ -14,6 +14,7 @@ import com.helicopter.domain.models.EmployeeDomainModel
 import com.helicopter.domain.models.StudentGroupDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepository{
     override fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>> {
@@ -45,33 +46,50 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
     }
 
     suspend fun refreshStudentGroupList(){
-        withContext(Dispatchers.IO){
-            val groupList = RetrofitClient.getListApi().fetchGroupList()
-                .asDatabaseEntities()
-            database.studentGroupDao.insertStudyGroupList(groupList)
+        try {
+            withContext(Dispatchers.IO) {
+                val groupList = RetrofitClient.getListApi().fetchGroupList()
+                    .asDatabaseEntities()
+                database.studentGroupDao.insertStudyGroupList(groupList)
+            }
+        }catch (e: Exception){
+
         }
     }
 
     suspend fun refreshFacultyList(){
-        withContext(Dispatchers.IO){
-            val faculties = RetrofitClient.getListApi().fetchFacultyList().asDatabaseEntities()
-            database.facultyDao.insertFacultyList(faculties)
+        try {
+            withContext(Dispatchers.IO) {
+                val faculties = RetrofitClient.getListApi().fetchFacultyList().asDatabaseEntities()
+                database.facultyDao.insertFacultyList(faculties)
+            }
+        }catch (e: Exception){
+
         }
     }
 
 
     suspend fun refreshEmployeeList(){
         withContext(Dispatchers.IO){
-            val employeeList = RetrofitClient.getListApi().fetchEmployeeList().asDatabaseEntities()
-            database.employeeDao.insertEmployeeList(employeeList)
+            try {
+                val employeeList =
+                    RetrofitClient.getListApi().fetchEmployeeList().asDatabaseEntities()
+                database.employeeDao.insertEmployeeList(employeeList)
+            }catch (e: Exception){
+
+            }
         }
     }
 
     suspend fun refreshSpecialityList(){
         withContext(Dispatchers.IO){
-            val specialities = RetrofitClient.getListApi().fetchSpecialityList()
-                .asDatabaseEntities()
-            database.specialityDao.insertSpecialityList(specialities)
+            try {
+                val specialities = RetrofitClient.getListApi().fetchSpecialityList()
+                    .asDatabaseEntities()
+                database.specialityDao.insertSpecialityList(specialities)
+            }catch (e: Exception){
+
+            }
         }
     }
 }
