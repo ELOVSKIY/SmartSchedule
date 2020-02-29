@@ -29,9 +29,10 @@ data class EmployeeEntity(
     @ColumnInfo(name = "academic_department")
     @TypeConverters(ListConverter::class)
     val academicDepartment: List<String>,
-
     @ColumnInfo(name = "full_name")
-    val fullName: String
+    val fullName: String,
+    val selected: Boolean = false,
+    val mainSchedule : Boolean = false
 )
 
 fun List<EmployeeEntity>.asDomainModel(): List<EmployeeDomainModel>{

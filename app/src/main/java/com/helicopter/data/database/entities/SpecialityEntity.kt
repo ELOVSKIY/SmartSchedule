@@ -19,6 +19,7 @@ data class SpecialityEntity(
     @ColumnInfo(name = "faculty_id")
     val facultyId: Long,
     val name: String
+
 )
 
 fun SpecialityEntity.asDomainModel(): SpecialityDomainModel{

@@ -17,12 +17,17 @@ class SelectEmployeeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this, SelectEmployeeViewModel.Factory(application))
+            .get(SelectEmployeeViewModel::class.java)
+        employeeAdapter = EmployeeAdapter()
+
+        employeeAdapter.setOnClickListener {employeeId->
+            viewModel.selectEmployee(employeeId)
+        }
+
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_select_employee
         )
-        employeeAdapter = EmployeeAdapter()
-        viewModel = ViewModelProvider(this, SelectEmployeeViewModel.Factory(application))
-            .get(SelectEmployeeViewModel::class.java)
         binding.viewModel = viewModel
         binding.employeeRecycler.adapter = employeeAdapter
 
@@ -33,6 +38,12 @@ class SelectEmployeeActivity : AppCompatActivity() {
         viewModel.employeeList.observe(this, Observer {employeeList ->
             employeeList?.let{
                 employeeAdapter.submitList(it)
+            }
+        })
+        viewModel.employeeSelected.observe(this, Observer { selected ->
+            if (selected){
+                viewModel.onEmployeeSelected()
+                finish()
             }
         })
     }

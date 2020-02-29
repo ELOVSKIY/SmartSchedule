@@ -9,7 +9,7 @@ import com.helicopter.data.repository.list.ListRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class GroupListViewModel(private val app: Application) : ViewModel() {
+class GroupListViewModel(app: Application) : ViewModel() {
     private val database = getInstance(app)
     private val repository = ListRepositoryImpl(database)
     val studentGroupList = repository.fetchSelectedGroupInfo()

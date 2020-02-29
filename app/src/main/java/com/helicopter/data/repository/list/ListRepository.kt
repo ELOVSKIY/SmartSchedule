@@ -18,6 +18,8 @@ interface ListRepository {
 
     fun fetchEmployeeList(): LiveData<List<EmployeeDomainModel>>
 
+    fun fetchSelectedEmployeeList(): LiveData<List<EmployeeDomainModel>>
+
     fun fetchFacultyList(): LiveData<List<FacultyEntity>>
 
     fun fetchFacultyById(facultyId: Long): LiveData<FacultyEntity>
@@ -29,4 +31,8 @@ interface ListRepository {
     suspend fun selectStudentGroup(groupId: Long)
 
     suspend fun unSelectStudentGroup(groupId: Long)
+
+    suspend fun selectEmployee(employeeId: Long)
+
+    suspend fun unSelectEmployee(employeeId: Long)
 }

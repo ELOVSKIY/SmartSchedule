@@ -22,7 +22,12 @@ interface EmployeeDao {
     @Query("SELECT * FROM employee WHERE employee_id = :id")
     fun fetchEmployeeById(id: Int): LiveData<EmployeeEntity>
 
-    @Query("SELECT * FROM employee ORDER BY last_name")
+    @Query("SELECT * FROM employee WHERE selected=0 ORDER BY last_name")
     fun fetchEmployeeList(): LiveData<List<EmployeeEntity>>
 
+    @Query("SELECT * FROM employee WHERE selected=1 ORDER BY last_name")
+    fun fetchSelectedEmployeeList(): LiveData<List<EmployeeEntity>>
+
+    @Query("UPDATE employee SET selected=NOT selected WHERE employee_id = :employeeId")
+    suspend fun changeSelectedStatusById(employeeId: Long)
 }
