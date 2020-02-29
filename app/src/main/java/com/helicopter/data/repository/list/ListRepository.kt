@@ -5,10 +5,13 @@ import com.helicopter.data.database.entities.EmployeeEntity
 import com.helicopter.data.database.entities.FacultyEntity
 import com.helicopter.data.database.entities.SpecialityEntity
 import com.helicopter.data.database.entities.StudentGroupEntity
+import com.helicopter.data.database.utils.GroupInformation
 import com.helicopter.domain.models.EmployeeDomainModel
 import com.helicopter.domain.models.StudentGroupDomainModel
 
 interface ListRepository {
+
+    suspend fun fetchStudentGroupInformation(): List<GroupInformation>
 
     fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>>
 

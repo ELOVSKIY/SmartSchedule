@@ -20,6 +20,11 @@ class SelectGroupViewModel(private val app: Application) : ViewModel() {
     init{
         viewModelScope.launch(Dispatchers.Main) {
             repository.refreshStudentGroupList()
+            repository.refreshSpecialityList()
+            repository.refreshFacultyList()
+            val info = repository.fetchStudentGroupInformation()
+            repository.refreshStudentGroupList()
+
         }
     }
 

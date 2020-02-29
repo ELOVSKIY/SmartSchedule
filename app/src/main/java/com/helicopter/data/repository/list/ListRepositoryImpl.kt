@@ -8,20 +8,32 @@ import com.helicopter.data.database.entities.EmployeeEntity
 import com.helicopter.data.database.entities.FacultyEntity
 import com.helicopter.data.database.entities.SpecialityEntity
 import com.helicopter.data.database.entities.asDomainModel
+import com.helicopter.data.database.utils.GroupInformation
 import com.helicopter.data.network.models.asDatabaseEntities
 import com.helicopter.data.network.retrofit.RetrofitClient
 import com.helicopter.domain.models.EmployeeDomainModel
 import com.helicopter.domain.models.StudentGroupDomainModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
+private const val TRY_AGAIN_TIMEOUT = 2_000L
+
 class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepository{
+
+
+    override suspend fun fetchStudentGroupInformation(): List<GroupInformation> {
+        return database.studentGroupDao.fetchWithGroupInfo()
+    }
+
     override fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>> {
         return Transformations.map(database.studentGroupDao.fetchGroupList()){
             it.asDomainModel()
         }
     }
+
+
 
     override fun fetchEmployeeList(): LiveData<List<EmployeeDomainModel>> {
         return Transformations.map(database.employeeDao.fetchEmployeeList()){
@@ -53,7 +65,8 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
                 database.studentGroupDao.insertStudyGroupList(groupList)
             }
         }catch (e: Exception){
-
+            delay(TRY_AGAIN_TIMEOUT)
+            refreshStudentGroupList()
         }
     }
 
@@ -64,7 +77,8 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
                 database.facultyDao.insertFacultyList(faculties)
             }
         }catch (e: Exception){
-
+            delay(TRY_AGAIN_TIMEOUT)
+            refreshFacultyList()
         }
     }
 
@@ -76,7 +90,8 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
                     RetrofitClient.getListApi().fetchEmployeeList().asDatabaseEntities()
                 database.employeeDao.insertEmployeeList(employeeList)
             }catch (e: Exception){
-
+                delay(TRY_AGAIN_TIMEOUT)
+                refreshEmployeeList()
             }
         }
     }
@@ -88,7 +103,8 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
                     .asDatabaseEntities()
                 database.specialityDao.insertSpecialityList(specialities)
             }catch (e: Exception){
-
+                delay(TRY_AGAIN_TIMEOUT)
+                refreshSpecialityList()
             }
         }
     }
