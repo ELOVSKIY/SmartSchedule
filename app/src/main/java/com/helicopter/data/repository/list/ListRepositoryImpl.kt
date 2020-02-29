@@ -10,6 +10,7 @@ import com.helicopter.data.database.entities.SpecialityEntity
 import com.helicopter.data.database.entities.asDomainModel
 import com.helicopter.data.network.models.asDatabaseEntities
 import com.helicopter.data.network.retrofit.RetrofitClient
+import com.helicopter.domain.models.EmployeeDomainModel
 import com.helicopter.domain.models.StudentGroupDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,8 +22,10 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
         }
     }
 
-    override fun fetchEmployeeList(): LiveData<List<EmployeeEntity>> {
-        return database.employeeDao.fetchEmployeeList()
+    override fun fetchEmployeeList(): LiveData<List<EmployeeDomainModel>> {
+        return Transformations.map(database.employeeDao.fetchEmployeeList()){
+            it.asDomainModel()
+        }
     }
 
     override fun fetchFacultyList(): LiveData<List<FacultyEntity>> {

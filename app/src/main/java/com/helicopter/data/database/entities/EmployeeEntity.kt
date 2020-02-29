@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.helicopter.data.database.entities.convertors.ListConverter
+import com.helicopter.domain.models.EmployeeDomainModel
+
 //CORRECT ENTITY
 @Entity(tableName = "employee")
 @TypeConverters(ListConverter::class)
@@ -31,3 +33,12 @@ data class EmployeeEntity(
     @ColumnInfo(name = "full_name")
     val fullName: String
 )
+
+fun List<EmployeeEntity>.asDomainModel(): List<EmployeeDomainModel>{
+    return this.map {
+        EmployeeDomainModel(
+            it.employeeId, it.firstName, it.lastName, it.middleName, it.rank, it.photoLink, it.calendarId,
+            it.academicDepartment, it.fullName
+        )
+    }
+}

@@ -21,7 +21,6 @@ class SelectGroupViewModel(private val app: Application) : ViewModel() {
         viewModelScope.launch(Dispatchers.Main) {
             repository.refreshStudentGroupList()
         }
-
     }
 
     val studentGroupList = repository.fetchStudentGroupList()
