@@ -7,14 +7,14 @@ import com.helicopter.data.repository.list.ListRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SelectEmployeeViewModel(private val app: Application) : ViewModel() {
+class SelectEmployeeViewModel(app: Application) : ViewModel() {
 
     private val database = getInstance(app)
     private val repository = ListRepositoryImpl(database)
 
     val employeeList = repository.fetchEmployeeList()
 
-    private val _employeeSelected = MutableLiveData<Boolean>(false)
+    private val _employeeSelected = MutableLiveData(false)
     val employeeSelected: LiveData<Boolean>
         get() = _employeeSelected
 

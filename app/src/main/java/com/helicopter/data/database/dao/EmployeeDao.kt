@@ -7,10 +7,10 @@ import com.helicopter.data.database.entities.EmployeeEntity
 @Dao
 interface EmployeeDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertEmployee(employee: EmployeeEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertEmployeeList(staff: List<EmployeeEntity>)
 
     @Update
@@ -22,12 +22,15 @@ interface EmployeeDao {
     @Query("SELECT * FROM employee WHERE employee_id = :id")
     fun fetchEmployeeById(id: Int): LiveData<EmployeeEntity>
 
-    @Query("SELECT * FROM employee WHERE selected=0 ORDER BY last_name")
+    @Query("SELECT * FROM employee WHERE selected=0 ORDER BY full_name")
     fun fetchEmployeeList(): LiveData<List<EmployeeEntity>>
 
-    @Query("SELECT * FROM employee WHERE selected=1 ORDER BY last_name")
+    @Query("SELECT * FROM employee WHERE selected=1 ORDER BY full_name")
     fun fetchSelectedEmployeeList(): LiveData<List<EmployeeEntity>>
 
-    @Query("UPDATE employee SET selected=NOT selected WHERE employee_id = :employeeId")
-    suspend fun changeSelectedStatusById(employeeId: Long)
+    @Query("UPDATE employee SET selected=1 WHERE employee_id = :employeeId")
+    suspend fun selectEmployeeById(employeeId: Long)
+
+    @Query("UPDATE employee SET selected=0 WHERE employee_id = :employeeId")
+    suspend fun unSelectEmployeeById(employeeId: Long)
 }

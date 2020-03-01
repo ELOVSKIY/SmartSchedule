@@ -21,18 +21,18 @@ class EmployeeListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        employeeAdapter = EmployeeAdapter()
         viewModel = ViewModelProvider(this, EmployeeListViewModel.Factory(
             activity!!.application
         )).get(EmployeeListViewModel::class.java)
+        binding = EmployeeListFragmentBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
 
-        employeeAdapter = EmployeeAdapter()
         //TODO(test)
         employeeAdapter.setOnClickListener { employeeId ->
             viewModel.unSelectEmployee(employeeId)
         }
 
-        binding = EmployeeListFragmentBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
         binding.employeeRecycler.adapter = employeeAdapter
 
         setObservers()

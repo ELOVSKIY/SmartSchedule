@@ -21,9 +21,6 @@ class EmployeeListViewModel(app: Application) : ViewModel() {
     }
 
 
-
-
-
     class Factory(private val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(EmployeeListViewModel::class.java)) {

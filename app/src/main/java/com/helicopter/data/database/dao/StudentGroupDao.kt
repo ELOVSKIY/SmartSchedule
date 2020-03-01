@@ -8,10 +8,10 @@ import com.helicopter.data.database.utils.StudentGroupInfoEntity
 @Dao
 interface StudentGroupDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertStudyGroup(group: StudentGroupEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertStudyGroupList(groups: List<StudentGroupEntity>)
 
     @Update
@@ -29,12 +29,15 @@ interface StudentGroupDao {
     @Query("SELECT * FROM student_group ORDER BY group_name")
     fun fetchGroupList(): LiveData<List<StudentGroupEntity>>
 
-    @Query("SELECT * FROM student_group WHERE selected=0")
+    @Query("SELECT * FROM student_group WHERE selected=0 ORDER BY group_name")
     fun fetchGroupInfo(): LiveData<List<StudentGroupInfoEntity>>
 
-    @Query("SELECT * FROM student_group WHERE selected=1")
+    @Query("SELECT * FROM student_group WHERE selected=1 ORDER BY group_name")
     fun fetchSelectedGroupInfo(): LiveData<List<StudentGroupInfoEntity>>
 
-    @Query("UPDATE student_group SET selected=NOT SELECTED WHERE group_id = :groupId")
-    fun changeSelectedById(groupId: Long)
+    @Query("UPDATE student_group SET selected=1 WHERE group_id = :groupId")
+    fun selectGroupById(groupId: Long)
+
+    @Query("UPDATE student_group SET selected=0 WHERE group_id = :groupId")
+    fun unSelectGroupBuId(groupId: Long)
 }

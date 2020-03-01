@@ -14,8 +14,6 @@ interface ListRepository {
 
     fun fetchSelectedGroupInfo(): LiveData<List<StudentGroupInfoDomainModel>>
 
-    fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>>
-
     fun fetchEmployeeList(): LiveData<List<EmployeeDomainModel>>
 
     fun fetchSelectedEmployeeList(): LiveData<List<EmployeeDomainModel>>

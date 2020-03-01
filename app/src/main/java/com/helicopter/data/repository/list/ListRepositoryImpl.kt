@@ -34,12 +34,6 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
         }
     }
 
-    override fun fetchStudentGroupList(): LiveData<List<StudentGroupDomainModel>> {
-        return Transformations.map(database.studentGroupDao.fetchGroupList()){
-            it.asDomainModel()
-        }
-    }
-
     override fun fetchEmployeeList(): LiveData<List<EmployeeDomainModel>> {
         return Transformations.map(database.employeeDao.fetchEmployeeList()){
             it.asDomainModel()
@@ -127,25 +121,25 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
 
     override suspend fun selectStudentGroup(groupId: Long) {
         withContext(Dispatchers.IO){
-            database.studentGroupDao.changeSelectedById(groupId)
+            database.studentGroupDao.selectGroupById(groupId)
         }
     }
 
     override suspend fun unSelectStudentGroup(groupId: Long) {
         withContext(Dispatchers.IO){
-            database.studentGroupDao.changeSelectedById(groupId)
+            database.studentGroupDao.unSelectGroupBuId(groupId)
         }
     }
 
     override suspend fun selectEmployee(employeeId: Long) {
         withContext(Dispatchers.IO){
-            database.employeeDao.changeSelectedStatusById(employeeId)
+            database.employeeDao.selectEmployeeById(employeeId)
         }
     }
 
     override suspend fun unSelectEmployee(employeeId: Long) {
         withContext(Dispatchers.IO){
-            database.employeeDao.changeSelectedStatusById(employeeId)
+            database.employeeDao.unSelectEmployeeById(employeeId)
         }
     }
 }
