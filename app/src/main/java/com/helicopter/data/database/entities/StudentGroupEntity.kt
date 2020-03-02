@@ -27,14 +27,14 @@ data class StudentGroupEntity(
 fun List<StudentGroupEntity>.asDomainModel(): List<StudentGroupDomainModel> {
     return this.map {
         StudentGroupDomainModel(
-            it.groupId, it.name, it.course, it.calendarId
+            it.groupId, it.name, it.course, it.calendarId, it.mainSchedule
         )
     }
 }
 
 fun StudentGroupEntity.asDomainModel(): StudentGroupDomainModel {
     return StudentGroupDomainModel(
-        this.groupId, this.name, this.course, this.calendarId
+        this.groupId, this.name, this.course, this.calendarId, this.mainSchedule
     )
 
 }

@@ -39,7 +39,7 @@ fun List<EmployeeEntity>.asDomainModel(): List<EmployeeDomainModel>{
     return this.map {
         EmployeeDomainModel(
             it.employeeId, it.firstName, it.lastName, it.middleName, it.rank, it.photoLink, it.calendarId,
-            it.academicDepartment, it.fullName
+            it.academicDepartment, it.fullName, it.mainSchedule
         )
     }
 }

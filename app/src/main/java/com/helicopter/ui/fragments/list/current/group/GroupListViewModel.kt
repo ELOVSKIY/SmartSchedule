@@ -16,12 +16,9 @@ class GroupListViewModel(app: Application) : ViewModel() {
 
     fun unSelectGroup(groupId: Long){
         viewModelScope.launch(Dispatchers.Main){
-            repository.unSelectStudentGroup(groupId)
+            repository.setMainStudentGroupSchedule(groupId)
         }
     }
-
-
-
 
 
     class Factory(private val app: Application) : ViewModelProvider.Factory {

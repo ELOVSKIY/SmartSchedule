@@ -11,5 +11,6 @@ data class EmployeeDomainModel(
     val photoLink: String?,
     val calendarId: String?, //TODO (странно вроде у всех должен быть)
     val academicDepartment: List<String>,
-    val fullName: String
+    val fullName: String,
+    val mainSchedule: Boolean
 )

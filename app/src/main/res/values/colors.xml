@@ -8,4 +8,6 @@
     <color name="floatActionBarColor">#69AB1D</color>
     <color name="iconColor">#FFFFFF</color>
     <color name="darkIconColor">#000000</color>
+    <color name="selectedColor">#A2FF94</color>
+    <color name="unselectedColor">#FFFFFF</color>
 </resources>

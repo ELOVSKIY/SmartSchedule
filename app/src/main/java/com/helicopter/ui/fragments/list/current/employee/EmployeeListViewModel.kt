@@ -16,7 +16,7 @@ class EmployeeListViewModel(app: Application) : ViewModel() {
 
     fun unSelectEmployee(employeeId: Long){
         viewModelScope.launch(Dispatchers.Main){
-            repository.unSelectEmployee(employeeId)
+            repository.setMainEmployeeSchedule(employeeId)
         }
     }
 

@@ -17,6 +17,7 @@
         android:layout_marginTop="@dimen/small_margin"
         android:elevation="@dimen/default_elevation"
         app:cardCornerRadius="@dimen/default_radius"
+        app:isSelected="@{employee.mainSchedule}"
         tools:context=".ui.fragments.main.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout

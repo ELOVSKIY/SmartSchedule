@@ -16,6 +16,8 @@
         android:layout_marginEnd="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
         android:elevation="@dimen/default_elevation"
+        app:contentPadding="0dp"
+        app:isSelected="@{studentGroupInfo.studentGroup.mainSchedule}"
         app:cardCornerRadius="@dimen/default_radius"
         tools:context=".ui.fragments.main.MainActivity">
 
