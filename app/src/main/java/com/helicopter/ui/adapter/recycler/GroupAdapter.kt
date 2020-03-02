@@ -2,8 +2,6 @@ package com.helicopter.ui.adapter.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +11,8 @@ import com.helicopter.domain.models.StudentGroupInfoDomainModel
 
 class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHolder>(this) {
 
-    private var listener: (groupId: Long) -> Unit = {}
+    private var onClickListener: (groupId: Long) -> Unit = {}
+    private var onLongClickListener: (groupId: Long) -> Unit = {}
 
     private var searchWord = ""
 
@@ -41,7 +40,11 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
     }
 
     fun setOnClickListener(listener: (groupId: Long) -> Unit) {
-        this.listener = listener
+        this.onClickListener = listener
+    }
+
+    fun setOnLongClickListener(listener: (groupId: Long) -> Unit) {
+        this.onLongClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentGroupViewHolder {
@@ -50,7 +53,7 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
 
     override fun onBindViewHolder(holder: StudentGroupViewHolder, position: Int) {
         val studentGroup = getItem(position)
-        holder.bind(studentGroup, listener)
+        holder.bind(studentGroup, onClickListener, onLongClickListener)
     }
 
 
@@ -73,10 +76,15 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
 
 class StudentGroupViewHolder(private val binding: GroupItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(studentGroup: StudentGroupInfoDomainModel, onClickListener: (groupId: Long) -> Unit) {
+    fun bind(studentGroup: StudentGroupInfoDomainModel, onClickListener: (groupId: Long) -> Unit,
+             onLongClickListener: (groupId: Long) -> Unit) {
         binding.studentGroupInfo = studentGroup
         binding.root.setOnClickListener {
             onClickListener(studentGroup.studentGroup.groupId)
+        }
+        binding.root.setOnLongClickListener {
+            onLongClickListener(studentGroup.studentGroup.groupId)
+            true
         }
         binding.executePendingBindings()
     }

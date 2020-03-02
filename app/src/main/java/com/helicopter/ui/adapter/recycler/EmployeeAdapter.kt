@@ -17,6 +17,8 @@ import java.util.*
 class EmployeeAdapter : ListAdapter<EmployeeDomainModel, EmployeeViewHolder>(this) {
 
     private var onClickListener: (employeeId: Long) -> Unit = {}
+    private var onLongClickListener: (groupId: Long) -> Unit = {}
+
 
     private var searchWord = ""
 
@@ -37,6 +39,10 @@ class EmployeeAdapter : ListAdapter<EmployeeDomainModel, EmployeeViewHolder>(thi
         this.onClickListener = listener
     }
 
+    fun setOnLongClickListener(listener: (groupId: Long) -> Unit) {
+        this.onLongClickListener = listener
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
         return EmployeeViewHolder.create(parent)
@@ -44,7 +50,7 @@ class EmployeeAdapter : ListAdapter<EmployeeDomainModel, EmployeeViewHolder>(thi
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
         val employee = getItem(position)
-        holder.bind(employee, onClickListener)
+        holder.bind(employee, onClickListener, onLongClickListener)
     }
 
     override fun submitList(list: List<EmployeeDomainModel>?) {
@@ -72,10 +78,17 @@ class EmployeeAdapter : ListAdapter<EmployeeDomainModel, EmployeeViewHolder>(thi
 
 class EmployeeViewHolder(private val binding: EmployeeItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(employee: EmployeeDomainModel, onClickListener:  (employeeId: Long) -> Unit) {
+    fun bind(employee: EmployeeDomainModel, onClickListener: (employeeId: Long) -> Unit,
+             onLongClickListener: (employeeId: Long) -> Unit) {
         binding.employee = employee
-        binding.root.setOnClickListener {
-            onClickListener(employee.employeeId)
+        binding.root.apply {
+            setOnClickListener {
+                onClickListener(employee.employeeId)
+            }
+            setOnLongClickListener {
+                onLongClickListener(employee.employeeId)
+                true
+            }
         }
         binding.executePendingBindings()
     }

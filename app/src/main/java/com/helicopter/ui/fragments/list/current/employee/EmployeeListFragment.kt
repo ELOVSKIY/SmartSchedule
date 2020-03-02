@@ -30,27 +30,13 @@ class EmployeeListFragment : Fragment() {
         binding = EmployeeListFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
 
-
-        val simple = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
+        employeeAdapter.apply {
+            setOnClickListener { employeeId ->
+                viewModel.setMainSchedule(employeeId)
             }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                viewModel.unSelectEmployee(position)
-
+            setOnLongClickListener { employeeId->
+                viewModel.unSelectEmployee(employeeId)
             }
-        }
-        val touchHelper = ItemTouchHelper(simple)
-        touchHelper.attachToRecyclerView(binding.employeeRecycler)
-
-        employeeAdapter.setOnClickListener { employeeId ->
-            viewModel.setMainSchedule(employeeId)
         }
 
         binding.employeeRecycler.adapter = employeeAdapter

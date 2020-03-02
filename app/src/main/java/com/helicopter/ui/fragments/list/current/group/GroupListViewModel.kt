@@ -12,23 +12,9 @@ class GroupListViewModel(app: Application) : ViewModel() {
     private val repository = ListRepositoryImpl(database)
     val studentGroupList = repository.fetchSelectedGroupInfo()
 
-    private val _unSelectEvent = MutableLiveData<Int>(null)
-    val unSelectEvent: LiveData<Int>
-        get() {
-            return _unSelectEvent
-        }
-
-    fun onUnSelect(){
-        _unSelectEvent.value = null
-    }
-
-    fun unSelectGroup(elementPosition: Int) {
+    fun unSelectGroup(groupId: Long) {
         viewModelScope.launch(Dispatchers.Main) {
-            repository.unSelectStudentGroup(
-                studentGroupList.value!![elementPosition]
-                    .studentGroup.groupId
-            )
-            _unSelectEvent.value = elementPosition
+            repository.unSelectStudentGroup(groupId)
         }
     }
 

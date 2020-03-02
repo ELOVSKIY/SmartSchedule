@@ -20,9 +20,9 @@ class EmployeeListViewModel(app: Application) : ViewModel() {
         }
     }
 
-    fun unSelectEmployee(elementPosition: Int){
+    fun unSelectEmployee(employeeId: Long){
         viewModelScope.launch(Dispatchers.Main){
-            repository.unSelectStudentGroup(employeeList.value!![elementPosition].employeeId)
+            repository.unSelectEmployee(employeeId)
         }
     }
 

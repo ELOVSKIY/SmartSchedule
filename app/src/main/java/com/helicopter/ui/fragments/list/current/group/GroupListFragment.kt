@@ -24,32 +24,19 @@ class GroupListFragment : ObservableFragment() {
         savedInstanceState: Bundle?
     ): View? {
         groupAdapter = GroupAdapter()
-        viewModel = ViewModelProvider(this, GroupListViewModel.Factory(
-            activity!!.application
-        )).get(GroupListViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this, GroupListViewModel.Factory(
+                activity!!.application
+            )
+        ).get(GroupListViewModel::class.java)
         binding = GroupListFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
 
-
-        val simple = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                viewModel.unSelectGroup(position)
-            }
-        }
-        val touchHelper = ItemTouchHelper(simple)
-        touchHelper.attachToRecyclerView(binding.groupRecycler)
-
-        groupAdapter.setOnClickListener {groupId ->
+        groupAdapter.setOnClickListener { groupId ->
             viewModel.setMainSchedule(groupId)
+        }
+        groupAdapter.setOnLongClickListener { groupId->
+            viewModel.unSelectGroup(groupId)
         }
 
         binding.groupRecycler.adapter = groupAdapter
@@ -57,15 +44,9 @@ class GroupListFragment : ObservableFragment() {
     }
 
     override fun setObservers() {
-        viewModel.studentGroupList.observe(viewLifecycleOwner, Observer {studentGroupList ->
-            if (studentGroupList != null){
+        viewModel.studentGroupList.observe(viewLifecycleOwner, Observer { studentGroupList ->
+            if (studentGroupList != null) {
                 groupAdapter.submitList(studentGroupList)
-            }
-        })
-        viewModel.unSelectEvent.observe(viewLifecycleOwner, Observer {position ->
-            position?.let{
-                groupAdapter.notifyItemRemoved(position)
-                viewModel.onUnSelect()
             }
         })
     }
