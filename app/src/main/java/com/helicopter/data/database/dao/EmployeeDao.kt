@@ -36,18 +36,28 @@ interface EmployeeDao {
     suspend fun unSelectEmployeeById(employeeId: Long)
 
     @Query("UPDATE employee SET mainSchedule=1 WHERE employee_id =:employeeId")
-    suspend fun setMainSchedule(employeeId: Long)
+    suspend fun setMainEmployeeSchedule(employeeId: Long)
 
     @Query("UPDATE employee SET mainSchedule=0 WHERE employee_id =:employeeId")
     suspend fun removeMainScheduleById(employeeId: Long)
 
+    @Query("UPDATE student_group SET mainSchedule=0")
+    suspend fun removeMainStudentGroupSchedule()
+
     @Query("UPDATE employee SET mainSchedule=0")
-    suspend fun removeMainSchedule()
+    suspend fun removeMainEmployeeSchedule()
 
     @Transaction
     suspend fun removeSelectedById(employeeId: Long){
         unSelectEmployeeById(employeeId)
         removeMainScheduleById(employeeId)
+    }
+
+    @Transaction
+    suspend fun setMainSchedule(groupId: Long){
+        removeMainStudentGroupSchedule()
+        removeMainEmployeeSchedule()
+        setMainEmployeeSchedule(groupId)
     }
 
 

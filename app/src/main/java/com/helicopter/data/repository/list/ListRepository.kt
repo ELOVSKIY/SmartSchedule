@@ -33,4 +33,8 @@ interface ListRepository {
     suspend fun selectEmployee(employeeId: Long)
 
     suspend fun unSelectEmployee(employeeId: Long)
+
+    suspend fun setMainEmployeeSchedule(employeeId: Long)
+
+    suspend fun setMainStudentGroupSchedule(groupId: Long)
 }

@@ -126,7 +126,7 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
 
     override suspend fun unSelectStudentGroup(groupId: Long) {
         withContext(Dispatchers.IO){
-            database.studentGroupDao.unSelectGroupById(groupId)
+            database.studentGroupDao.removeSelectedById(groupId)
         }
     }
 
@@ -138,7 +138,19 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
 
     override suspend fun unSelectEmployee(employeeId: Long) {
         withContext(Dispatchers.IO){
-            database.employeeDao.unSelectEmployeeById(employeeId)
+            database.employeeDao.removeSelectedById(employeeId)
+        }
+    }
+
+    override suspend fun setMainEmployeeSchedule(employeeId: Long) {
+        withContext(Dispatchers.IO){
+            database.employeeDao.setMainSchedule(employeeId)
+        }
+    }
+
+    override suspend fun setMainStudentGroupSchedule(groupId: Long) {
+        withContext(Dispatchers.IO){
+            database.studentGroupDao.setMainSchedule(groupId)
         }
     }
 }
