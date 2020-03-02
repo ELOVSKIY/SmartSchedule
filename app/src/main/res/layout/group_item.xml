@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
                 android:singleLine="true"
-                android:text="@{studentGroupInfo.speciality.name}"
+                android:text="@{studentGroupInfo.speciality.abbrev}"
                 app:layout_constraintBottom_toBottomOf="@+id/speciality_text"
                 app:layout_constraintEnd_toEndOf="@+id/course"
                 app:layout_constraintStart_toEndOf="@+id/speciality_text"

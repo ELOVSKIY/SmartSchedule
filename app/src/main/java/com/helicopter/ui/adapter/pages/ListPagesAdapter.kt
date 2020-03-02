@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.helicopter.R
-import com.helicopter.ui.fragments.list.employee.EmployeeListFragment
-import com.helicopter.ui.fragments.list.group.GroupListFragment
+import com.helicopter.ui.fragments.list.current.employee.EmployeeListFragment
+import com.helicopter.ui.fragments.list.current.group.GroupListFragment
 import java.lang.IllegalArgumentException
 
 class ListPagesAdapter(fragmentManager: FragmentManager, private val app: Application

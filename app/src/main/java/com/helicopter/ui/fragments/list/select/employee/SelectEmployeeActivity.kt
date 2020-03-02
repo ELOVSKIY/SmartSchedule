@@ -2,6 +2,7 @@ package com.helicopter.ui.fragments.list.select.employee
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,6 +32,13 @@ class SelectEmployeeActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.employeeRecycler.adapter = employeeAdapter
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
+
         setObservers()
     }
 
@@ -46,5 +54,15 @@ class SelectEmployeeActivity : AppCompatActivity() {
                 finish()
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

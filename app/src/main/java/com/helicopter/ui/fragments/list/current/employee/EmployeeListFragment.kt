@@ -1,4 +1,4 @@
-package com.helicopter.ui.fragments.list.employee
+package com.helicopter.ui.fragments.list.current.employee
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -8,7 +8,7 @@ import android.annotation.SuppressLint
 @SuppressLint("DefaultLocale")
 fun containsSearchQuery(searchQuery: String, vararg params: String): Boolean {
     for (param in params){
-        if(param.toLowerCase().contains(searchQuery.toLowerCase())){
+        if(param.toLowerCase().startsWith(searchQuery.toLowerCase())){
             return true
         }
     }

@@ -1,4 +1,4 @@
-package com.helicopter.ui.fragments.list.group
+package com.helicopter.ui.fragments.list.current.employee
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -9,26 +9,23 @@ import com.helicopter.data.repository.list.ListRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class GroupListViewModel(app: Application) : ViewModel() {
+class EmployeeListViewModel(app: Application) : ViewModel() {
     private val database = getInstance(app)
     private val repository = ListRepositoryImpl(database)
-    val studentGroupList = repository.fetchSelectedGroupInfo()
+    val employeeList = repository.fetchSelectedEmployeeList()
 
-    fun unSelectGroup(groupId: Long){
+    fun unSelectEmployee(employeeId: Long){
         viewModelScope.launch(Dispatchers.Main){
-            repository.unSelectStudentGroup(groupId)
+            repository.unSelectEmployee(employeeId)
         }
     }
 
 
-
-
-
     class Factory(private val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(GroupListViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(EmployeeListViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return GroupListViewModel(app) as T
+                return EmployeeListViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

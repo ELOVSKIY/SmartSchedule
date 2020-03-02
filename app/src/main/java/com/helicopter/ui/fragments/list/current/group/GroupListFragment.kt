@@ -1,14 +1,12 @@
-package com.helicopter.ui.fragments.list.group
+package com.helicopter.ui.fragments.list.current.group
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
-import com.helicopter.R
 import com.helicopter.databinding.GroupListFragmentBinding
 import com.helicopter.ui.adapter.recycler.GroupAdapter
 import com.helicopter.ui.fragments.ObservableFragment

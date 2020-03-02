@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.helicopter.ui.fragments.list.group.GroupListViewModel" />
+            type="com.helicopter.ui.fragments.list.current.group.GroupListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.list.employee.EmployeeListFragment">
+        tools:context=".ui.fragments.list.current.employee.EmployeeListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/group_recycler"
