@@ -17,5 +17,5 @@ interface FacultyDao {
     fun fetchFacultyList(): LiveData<List<FacultyEntity>>
 
     @Query("SELECT * FROM faculty WHERE faculty_id =:facultyId")
-    fun fetchFacultyByid(facultyId: Long): LiveData<FacultyEntity>
+    fun fetchFacultyById(facultyId: Long): LiveData<FacultyEntity>
 }

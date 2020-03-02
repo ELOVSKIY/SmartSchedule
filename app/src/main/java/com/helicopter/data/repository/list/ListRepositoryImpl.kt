@@ -10,7 +10,6 @@ import com.helicopter.data.database.utils.asDomainModel
 import com.helicopter.data.network.models.asDatabaseEntities
 import com.helicopter.data.network.retrofit.RetrofitClient
 import com.helicopter.domain.models.EmployeeDomainModel
-import com.helicopter.domain.models.StudentGroupDomainModel
 import com.helicopter.domain.models.StudentGroupInfoDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -51,7 +50,7 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
     }
 
     override fun fetchFacultyById(facultyId: Long): LiveData<FacultyEntity> {
-        return database.facultyDao.fetchFacultyByid(facultyId)
+        return database.facultyDao.fetchFacultyById(facultyId)
     }
 
     override fun fetchSpecialityList(): LiveData<List<SpecialityEntity>> {
@@ -127,7 +126,7 @@ class ListRepositoryImpl(private val database: ScheduleDatabase) : ListRepositor
 
     override suspend fun unSelectStudentGroup(groupId: Long) {
         withContext(Dispatchers.IO){
-            database.studentGroupDao.unSelectGroupBuId(groupId)
+            database.studentGroupDao.unSelectGroupById(groupId)
         }
     }
 
