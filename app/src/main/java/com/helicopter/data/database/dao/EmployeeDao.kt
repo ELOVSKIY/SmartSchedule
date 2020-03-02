@@ -7,6 +7,7 @@ import com.helicopter.data.database.entities.EmployeeEntity
 @Dao
 interface EmployeeDao {
 
+    //TODO (переделать структурру бд под реплэйс)
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertEmployee(employee: EmployeeEntity)
 

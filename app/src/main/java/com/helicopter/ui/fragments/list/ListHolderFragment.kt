@@ -2,20 +2,17 @@ package com.helicopter.ui.fragments.list
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import com.helicopter.R
 
 import com.helicopter.databinding.ListHolderFragmentBinding
 import com.helicopter.ui.adapter.pages.ListPagesAdapter
 import com.helicopter.ui.fragments.ObservableFragment
-import com.helicopter.ui.fragments.list.all.employee.SelectEmployeeActivity
-import com.helicopter.ui.fragments.list.all.group.SelectGroupActivity
+import com.helicopter.ui.fragments.list.select.employee.SelectEmployeeActivity
+import com.helicopter.ui.fragments.list.select.group.SelectGroupActivity
 import java.lang.IllegalArgumentException
 
 class ListHolderFragment : ObservableFragment() {

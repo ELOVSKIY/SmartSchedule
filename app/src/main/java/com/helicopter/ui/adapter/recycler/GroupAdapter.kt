@@ -2,6 +2,8 @@ package com.helicopter.ui.adapter.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +15,31 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
 
     private var listener: (groupId: Long) -> Unit = {}
 
-    fun setOnClickListener(listener: (groupId: Long) -> Unit){
+    private var searchWord = ""
+
+    fun search(searchWord: String) {
+        this.searchWord = searchWord
+        super.submitList(list)
+    }
+
+    private var _list = mutableListOf<StudentGroupInfoDomainModel>()
+    private val list: List<StudentGroupInfoDomainModel>
+        get() {
+            return _list.filter {
+                containsSearchQuery(searchWord, it.studentGroup.name)
+            }
+        }
+
+
+    override fun submitList(list: List<StudentGroupInfoDomainModel>?) {
+        if (list != null) {
+            _list.clear()
+            _list.addAll(list)
+            search(searchWord)
+        }
+    }
+
+    fun setOnClickListener(listener: (groupId: Long) -> Unit) {
         this.listener = listener
     }
 
@@ -39,6 +65,7 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
             return oldItem == newItem
         }
     }
+
 }
 
 class StudentGroupViewHolder(private val binding: GroupItemBinding) :

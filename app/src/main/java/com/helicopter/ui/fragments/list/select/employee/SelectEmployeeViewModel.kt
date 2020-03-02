@@ -1,4 +1,4 @@
-package com.helicopter.ui.fragments.list.all.group
+package com.helicopter.ui.fragments.list.select.employee
 
 import android.app.Application
 import androidx.lifecycle.*
@@ -7,40 +7,40 @@ import com.helicopter.data.repository.list.ListRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SelectGroupViewModel(private val app: Application) : ViewModel() {
+class SelectEmployeeViewModel(app: Application) : ViewModel() {
 
     private val database = getInstance(app)
     private val repository = ListRepositoryImpl(database)
-    val studentGroupList = repository.fetchStudentGroupInfo()
 
-    private val _groupSelected = MutableLiveData<Boolean>(false)
-    val groupSelected: LiveData<Boolean>
-    get()= _groupSelected
+    val employeeList = repository.fetchEmployeeList()
 
-    init{
+    private val _employeeSelected = MutableLiveData(false)
+    val employeeSelected: LiveData<Boolean>
+        get() = _employeeSelected
+
+    init {
         viewModelScope.launch(Dispatchers.Main) {
-            repository.refreshStudentGroupInfo()
+            repository.refreshEmployeeList()
         }
     }
 
-
-
-    fun selectStudentGroup(groupId: Long){
+    fun selectEmployee(employeeId: Long) {
         viewModelScope.launch(Dispatchers.Main) {
-            repository.selectStudentGroup(groupId)
-            _groupSelected.value = true
+            repository.selectEmployee(employeeId)
+            _employeeSelected.value = true
         }
     }
 
-    fun onGroupSelected(){
-        _groupSelected.value = false
+    fun onEmployeeSelected(){
+        _employeeSelected.value = false
     }
+
 
     class Factory(private val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(SelectGroupViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(SelectEmployeeViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return SelectGroupViewModel(app) as T
+                return SelectEmployeeViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
