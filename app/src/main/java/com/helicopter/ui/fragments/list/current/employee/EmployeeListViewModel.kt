@@ -14,9 +14,15 @@ class EmployeeListViewModel(app: Application) : ViewModel() {
     private val repository = ListRepositoryImpl(database)
     val employeeList = repository.fetchSelectedEmployeeList()
 
-    fun unSelectEmployee(employeeId: Long){
+    fun setMainSchedule(employeeId: Long){
         viewModelScope.launch(Dispatchers.Main){
             repository.setMainEmployeeSchedule(employeeId)
+        }
+    }
+
+    fun unSelectEmployee(elementPosition: Int){
+        viewModelScope.launch(Dispatchers.Main){
+            repository.unSelectStudentGroup(employeeList.value!![elementPosition].employeeId)
         }
     }
 

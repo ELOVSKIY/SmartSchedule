@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 
 import com.helicopter.databinding.GroupListFragmentBinding
 import com.helicopter.ui.adapter.recycler.GroupAdapter
@@ -28,9 +30,26 @@ class GroupListFragment : ObservableFragment() {
         binding = GroupListFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
 
-        //TODO (тестовое)
-        groupAdapter.setOnClickListener {
-            viewModel.unSelectGroup(it)
+
+        val simple = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                viewModel.unSelectGroup(position)
+            }
+        }
+        val touchHelper = ItemTouchHelper(simple)
+        touchHelper.attachToRecyclerView(binding.groupRecycler)
+
+        groupAdapter.setOnClickListener {groupId ->
+            viewModel.setMainSchedule(groupId)
         }
 
         binding.groupRecycler.adapter = groupAdapter
@@ -41,6 +60,12 @@ class GroupListFragment : ObservableFragment() {
         viewModel.studentGroupList.observe(viewLifecycleOwner, Observer {studentGroupList ->
             if (studentGroupList != null){
                 groupAdapter.submitList(studentGroupList)
+            }
+        })
+        viewModel.unSelectEvent.observe(viewLifecycleOwner, Observer {position ->
+            position?.let{
+                groupAdapter.notifyItemRemoved(position)
+                viewModel.onUnSelect()
             }
         })
     }
