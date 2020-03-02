@@ -17,6 +17,21 @@ class EmployeeAdapter : ListAdapter<EmployeeDomainModel, EmployeeViewHolder>(thi
 
     private var onClickListener: (employeeId: Long) -> Unit = {}
 
+    private var searchWord = ""
+
+    fun search(searchWord: String?) {
+        this.searchWord = searchWord ?: ""
+        super.submitList(list)
+    }
+
+    private var _list = mutableListOf<EmployeeDomainModel>()
+    private val list: List<EmployeeDomainModel>
+        get() {
+            return _list.filter {
+                containsSearchQuery(searchWord, it.lastName)
+            }
+        }
+
     fun setOnClickListener(listener: (employeeId: Long) -> Unit) {
         this.onClickListener = listener
     }
@@ -29,6 +44,14 @@ class EmployeeAdapter : ListAdapter<EmployeeDomainModel, EmployeeViewHolder>(thi
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
         val employee = getItem(position)
         holder.bind(employee, onClickListener)
+    }
+
+    override fun submitList(list: List<EmployeeDomainModel>?) {
+        if (list != null) {
+            _list.clear()
+            _list.addAll(list)
+            search(searchWord)
+        }
     }
 
     companion object : DiffUtil.ItemCallback<EmployeeDomainModel>() {

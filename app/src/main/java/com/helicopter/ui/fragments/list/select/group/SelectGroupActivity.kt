@@ -66,7 +66,7 @@ class SelectGroupActivity : AppCompatActivity() {
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    groupAdapter.search(newText ?: "")
+                    groupAdapter.search(newText)
                     return false
                 }
             })

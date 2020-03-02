@@ -17,8 +17,8 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
 
     private var searchWord = ""
 
-    fun search(searchWord: String) {
-        this.searchWord = searchWord
+    fun search(searchWord: String?) {
+        this.searchWord = searchWord ?: ""
         super.submitList(list)
     }
 
@@ -26,7 +26,8 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
     private val list: List<StudentGroupInfoDomainModel>
         get() {
             return _list.filter {
-                containsSearchQuery(searchWord, it.studentGroup.name)
+                containsSearchQuery(searchWord, it.studentGroup.name, it.speciality?.name,
+                    it.speciality?.abbrev, it.faculty?.abbrev)
             }
         }
 
@@ -51,6 +52,8 @@ class GroupAdapter : ListAdapter<StudentGroupInfoDomainModel, StudentGroupViewHo
         val studentGroup = getItem(position)
         holder.bind(studentGroup, listener)
     }
+
+
 
     companion object : DiffUtil.ItemCallback<StudentGroupInfoDomainModel>() {
         override fun areItemsTheSame(
