@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <item
         android:id="@+id/CurrentScheduleFragment"
         android:title="@string/schedule"
-        android:icon="@drawable/baseline_format_24" />
+        android:icon="@drawable/ic_schedule_24_svg" />
 
     <item
         android:id="@+id/ListHolderFragment"
         android:title="@string/list"
-        android:icon="@drawable/baseline_format_24" />
+        android:icon="@drawable/ic_group_24_svg" />
 
     <item
         android:id="@+id/AlarmFragment"
         android:title="@string/alarm"
-        android:icon="@drawable/baseline_format_24" />
+        android:icon="@drawable/ic_alarm_24_svg" />
+
+    <item
+        android:id="@+id/VacantAuditoryFragment"
+        android:title="@string/auditory"
+        android:icon="@drawable/ic_auditory_24_svg" />
 
     <item
         android:id="@+id/SettingsFragment"
         android:title="@string/settings"
-        android:icon="@drawable/baseline_format_24" />
+        android:icon="@drawable/ic_settings_24_svg" />
 
 </menu>

@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso
 fun ImageView.setEmployeeImage(url: String?){
     Picasso.get()
         .load(url)
-        .placeholder(R.drawable.ic_person_24dp)
+        .placeholder(R.drawable.ic_person_24_svg)
         .fit()
         .into(this)
 }

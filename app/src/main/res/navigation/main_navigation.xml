@@ -21,5 +21,9 @@
         android:id="@+id/ListHolderFragment"
         android:name="com.helicopter.ui.fragments.list.ListHolderFragment"
         tools:layout="@layout/list_holder_fragment" />
+    <fragment
+        android:id="@+id/VacantAuditoryFragment"
+        android:name="com.helicopter.ui.fragments.auditory.VacantAuditoryFragment"
+        tools:layout="@layout/vacant_auditory_fragment" />
 
 </navigation>
