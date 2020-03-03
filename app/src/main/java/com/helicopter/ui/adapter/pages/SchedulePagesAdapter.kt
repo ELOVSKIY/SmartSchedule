@@ -1,7 +1,6 @@
 package com.helicopter.ui.adapter.pages
 
 import android.app.Application
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -33,10 +32,10 @@ class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: App
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val month = calendar.get(Calendar.MONTH) + 1
         val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
-        return "${getDayOfWeek(dayOfWeek)} ${transformDate(day)}.${transformDate(month)}"
+        return "${getDayOfWeekTitle(dayOfWeek)} ${transformDate(day)}.${transformDate(month)}"
     }
 
-    private fun getDayOfWeek(day: Int): String{
+    private fun getDayOfWeekTitle(day: Int): String{
         return when(day){
             1 -> app.getString(R.string.sunday)
             2 -> app.getString(R.string.monday)
@@ -56,6 +55,12 @@ class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: App
         }else {
             "$date"
         }
+    }
+
+    private fun getDayAndWeekNumber(offset: Int): Pair<Int, Int>{
+        val calendar = Calendar.getInstance()
+        val weekNumb = calendar.get(Calendar.DAY_OF_WEEK)
+        TODO()
     }
 
 }
