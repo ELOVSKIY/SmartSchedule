@@ -9,7 +9,8 @@ import com.helicopter.data.database.entities.*
 
 @Database(
     entities = [EmployeeEntity::class, StudentGroupEntity::class, LastUpdateEntity::class,
-        ScheduleModelEntity::class, SpecialityEntity::class, FacultyEntity::class, AuditoryEntity::class]
+        ScheduleModelEntity::class, SpecialityEntity::class, FacultyEntity::class, AuditoryEntity::class,
+    CurrentWeekNumberEntity::class]
     , version = 1, exportSchema = false
 )
 abstract class ScheduleDatabase : RoomDatabase() {
@@ -24,6 +25,8 @@ abstract class ScheduleDatabase : RoomDatabase() {
     abstract val facultyDao: FacultyDao
 
     abstract val auditoryDao: AuditoryDao
+
+    abstract val currentWeekNumberDao: CurrentWeekNumberDao
 
 }
 
