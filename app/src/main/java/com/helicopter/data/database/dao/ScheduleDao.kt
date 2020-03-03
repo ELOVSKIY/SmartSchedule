@@ -19,26 +19,26 @@ interface ScheduleDao {
     @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId")
     fun fetchScheduleListByEmployeeId(employeeId: Long): List<ScheduleModelEntity>
 
-    @Query("SELECT * FROM schedule_model WHERE group_id = :groupId AND week_number = :weekNumb AND week_day = :weekDay")
-    fun fetchScheduleListByGroupIdAndWeek(
+    @Query("SELECT * FROM schedule_model WHERE group_id = :groupId AND week_number = :weekNumber AND week_day = :day")
+    suspend fun fetchScheduleListByGroupIdAndWeek(
         groupId: Long,
-        weekNumb: Int,
-        weekDay: String
-    ): LiveData<List<ScheduleModelEntity>>
-
-    @Query("SELECT * FROM schedule_model WHERE group_name = :groupName AND week_number = :weekNumb AND week_day = :weekDay")
-    suspend fun fetchScheduleListByGroupNameAndWeek(
-        groupName: String,
-        weekNumb: Int,
-        weekDay: String
+        weekNumber: Int,
+        day: String
     ): List<ScheduleModelEntity>
 
-    @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId AND week_number = :weekNumb AND week_day = :weekDay")
-    fun fetchScheduleListByEmployeeIdAndWeek(
+    @Query("SELECT * FROM schedule_model WHERE group_name = :groupName AND week_number = :weekNumber AND week_day = :day")
+    suspend fun fetchScheduleByGroupNameAndWeek(
+        groupName: String,
+        weekNumber: Int,
+        day: String
+    ): List<ScheduleModelEntity>
+
+    @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId AND week_number = :weekNumber AND week_day = :day")
+    suspend fun fetchScheduleByEmployeeIdAndWeek(
         employeeId: Long,
-        weekNumb: Int,
-        weekDay: String
-    ): LiveData<List<ScheduleModelEntity>>
+        weekNumber: Int,
+        day: String
+    ): List<ScheduleModelEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertScheduleList(scheduleList: List<ScheduleModelEntity>)

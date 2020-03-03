@@ -14,5 +14,8 @@ interface CurrentWeekNumberDao {
     fun updateCurrentWeekNumber(weekNumber: CurrentWeekNumberEntity)
 
     @Query("SELECT weekNumber FROM current_week_number")
-    fun fetchCurrentWeekNumber(): LiveData<Int>
+    fun fetchCurrentWeekNumberLive(): LiveData<Int>
+
+    @Query("SELECT weekNumber FROM current_week_number")
+    suspend fun fetchCurrentWeekNumber(): Int
 }

@@ -1,9 +1,9 @@
 package com.helicopter.data.database.entities
 
 import androidx.room.*
-import com.google.gson.annotations.SerializedName
 import com.helicopter.data.database.entities.convertors.ListConverter
 import com.helicopter.data.network.models.Employee
+import com.helicopter.domain.models.ScheduleDomainModel
 
 @Entity(tableName = "schedule_model",
     primaryKeys = ["group_id", "employee_id", "week_number", "week_day", "lesson_time", "num_subgroup"]
@@ -38,6 +38,14 @@ data class ScheduleModelEntity(
     val subject: String,
     @ColumnInfo(name = "week_number")
     val weekNumber: List<Int>,
-    @SerializedName("zaoch")
     val correspondence: Boolean
 )
+
+fun ScheduleModelEntity.asDomainModel(): ScheduleDomainModel{
+    return ScheduleDomainModel(
+        this.groupId, this.employeeId, this.groupName, this.employee, this.subject, this.weekDay,
+        this.weekNumber, this.numSubgroup, this.studentGroup, this.auditory, this.startLessonTime,
+        this.endLessonTime, this.lessonTime, this.lessonType, this.note, this.correspondence
+    )
+}
+

@@ -17,7 +17,7 @@ private const val EMPLOYEE_SCHEDULE = 1
 class ScheduleAdapter: ListAdapter<ScheduleDomainModel, RecyclerView.ViewHolder>(this) {
     override fun getItemViewType(position: Int): Int {
         val schedule = getItem(position)
-        return if (schedule.isGroupSchedule) GROUP_SCHEDULE else EMPLOYEE_SCHEDULE
+        return if (schedule.groupId != 0L) GROUP_SCHEDULE else EMPLOYEE_SCHEDULE
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
