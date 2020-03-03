@@ -12,11 +12,13 @@ import java.util.*
 
 private const val DAY_COUNT = 30
 
-class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: Application
-    ): FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+class SchedulePagesAdapter(
+    fragmentManager: FragmentManager, private val app: Application
+) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         val args = Bundle()
+        args.putInt(DayScheduleFragment.OFFSET, position)
         return DayScheduleFragment().apply {
             this.arguments = args
         }
@@ -35,8 +37,8 @@ class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: App
         return "${getDayOfWeekTitle(dayOfWeek)} ${transformDate(day)}.${transformDate(month)}"
     }
 
-    private fun getDayOfWeekTitle(day: Int): String{
-        return when(day){
+    private fun getDayOfWeekTitle(day: Int): String {
+        return when (day) {
             1 -> app.getString(R.string.sunday)
             2 -> app.getString(R.string.monday)
             3 -> app.getString(R.string.tuesday)
@@ -48,19 +50,12 @@ class SchedulePagesAdapter(fragmentManager: FragmentManager,private val app: App
         }
     }
 
-    private fun transformDate(date: Int): String{
+    private fun transformDate(date: Int): String {
         val strDate = date.toString()
-        return if (strDate.length == 1){
+        return if (strDate.length == 1) {
             "0$date"
-        }else {
+        } else {
             "$date"
         }
     }
-
-    private fun getDayAndWeekNumber(offset: Int): Pair<Int, Int>{
-        val calendar = Calendar.getInstance()
-        val weekNumb = calendar.get(Calendar.DAY_OF_WEEK)
-        TODO()
-    }
-
 }

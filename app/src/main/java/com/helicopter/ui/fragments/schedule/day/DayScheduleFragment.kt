@@ -13,6 +13,8 @@ import com.helicopter.ui.adapter.recycler.ScheduleAdapter
 import com.helicopter.ui.fragments.ObservableFragment
 
 
+
+
 class DayScheduleFragment : ObservableFragment() {
 
     private lateinit var viewModel: DayScheduleViewModel
@@ -22,9 +24,10 @@ class DayScheduleFragment : ObservableFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val offset = arguments!!.getInt(OFFSET)
         viewModel = ViewModelProvider(
             this, DayScheduleViewModel.Factory(
-                activity!!.application
+                activity!!.application, offset
             )
         )[DayScheduleViewModel::class.java]
         val binding = DayScheduleFragmentBinding.inflate(inflater, container, false)
@@ -37,5 +40,9 @@ class DayScheduleFragment : ObservableFragment() {
                 adapter.submitList(scheduleList)
             }
         })
+    }
+
+    companion object{
+        const val OFFSET = "OFFSET"
     }
 }

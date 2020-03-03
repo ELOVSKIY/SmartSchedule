@@ -65,8 +65,12 @@ class ScheduleRepositoryImpl(private val database: ScheduleDatabase) : ScheduleR
         }
     }
 
-    fun fetchCurrentWeekNumber(): LiveData<Int> {
+    fun fetchCurrentWeekNumberLive(): LiveData<Int> {
         return database.currentWeekNumberDao.fetchCurrentWeekNumberLive()
+    }
+
+    suspend fun fetchCurrentWeekNumber(): Int{
+        return database.currentWeekNumberDao.fetchCurrentWeekNumber()
     }
 
 

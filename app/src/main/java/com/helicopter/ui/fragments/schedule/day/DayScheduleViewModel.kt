@@ -2,18 +2,17 @@ package com.helicopter.ui.fragments.schedule.day
 
 import android.app.Application
 import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import com.helicopter.R
 import com.helicopter.data.database.database.getInstance
-import com.helicopter.data.database.entities.ScheduleModelEntity
 import com.helicopter.data.repository.schedule.ScheduleRepositoryImpl
 import com.helicopter.domain.models.ScheduleDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class DayScheduleViewModel(
     private val app: Application,
-    private val date: String,
-    private val dayNumber: Int,
     private val offset: Int
 ) : ViewModel() {
 
@@ -26,32 +25,54 @@ class DayScheduleViewModel(
             return _schedule
         }
 
-    suspend fun fetchDaySchedule() {
-        repository.fetchCurrentWeekNumber().observeForever(Observer { weekNumb ->
+    init{
+        fetchDaySchedule()
+    }
+
+    private fun fetchDaySchedule() {
+        viewModelScope.launch(Dispatchers.Main){
+                val currentWeekNumber = repository.fetchCurrentWeekNumber()
+                val weekDayNumber = getWeekDay()
+                val weekDay = getDayByNumb(weekDayNumber)
+                //TODO (1) исправить ошибку с модулями
+                val weekNumber = (currentWeekNumber + (weekDayNumber + offset) % 7) % 4
+                val schedule = repository.fetchCurrentSchedule(weekNumber, weekDay)
+                _schedule.value = schedule
+        }
+
+
+        repository.fetchCurrentWeekNumberLive().observeForever { weekNumb ->
             weekNumb?.let {
                 viewModelScope.launch(Dispatchers.Main) {
-                    val weekNumber = (it + (dayNumber + offset) / 7) % 4
-                    val weekDay = getDayByNumb((dayNumber + offset) % 7)
+                    val weekDayNumber = getWeekDay()
+                    val weekDay = getDayByNumb(weekDayNumber)
+                    //TODO (1) исправить ошибку с модулями
+                    val weekNumber = (it + (weekDayNumber + offset) % 7) % 4
                     val schedule = repository.fetchCurrentSchedule(weekNumber, weekDay)
                     _schedule.value = schedule
 
                 }
             }
-        })
+        }
 
     }
 
     class Factory(
-        private val app: Application, private val date: String,
-        private val dayNumber: Int, private val offset: Int
+        private val app: Application, private val offset: Int
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(DayScheduleViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return DayScheduleViewModel(app, date, dayNumber, offset) as T
+                return DayScheduleViewModel(app, offset) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
+    }
+
+    private fun getWeekDay(): Int{
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DATE, offset)
+        return calendar.get(Calendar.DAY_OF_WEEK)
     }
 
     private fun getDayByNumb(day: Int): String {
