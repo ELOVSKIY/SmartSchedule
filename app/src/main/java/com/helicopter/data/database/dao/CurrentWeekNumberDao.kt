@@ -17,5 +17,5 @@ interface CurrentWeekNumberDao {
     fun fetchCurrentWeekNumberLive(): LiveData<Int>
 
     @Query("SELECT weekNumber FROM current_week_number")
-    suspend fun fetchCurrentWeekNumber(): Int
+    suspend fun fetchCurrentWeekNumber(): Int?
 }

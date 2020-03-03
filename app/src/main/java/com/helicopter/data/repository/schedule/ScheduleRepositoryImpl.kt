@@ -41,7 +41,7 @@ class ScheduleRepositoryImpl(private val database: ScheduleDatabase) : ScheduleR
         }
     }
 
-    suspend fun fetchCurrentSchedule(weekNumber: Int, day: String): List<ScheduleDomainModel>? {
+    suspend fun fetchCurrentSchedule(weekNumber: String, day: String): List<ScheduleDomainModel>? {
         return withContext(Dispatchers.IO) {
             val mainGroup = database.studentGroupDao.fetchMainStudentGroupId()
             val mainEmployee = database.employeeDao.fetchMainEmployeeId()
@@ -69,7 +69,7 @@ class ScheduleRepositoryImpl(private val database: ScheduleDatabase) : ScheduleR
         return database.currentWeekNumberDao.fetchCurrentWeekNumberLive()
     }
 
-    suspend fun fetchCurrentWeekNumber(): Int{
+    suspend fun fetchCurrentWeekNumber(): Int?{
         return database.currentWeekNumberDao.fetchCurrentWeekNumber()
     }
 

@@ -19,24 +19,24 @@ interface ScheduleDao {
     @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId")
     fun fetchScheduleListByEmployeeId(employeeId: Long): List<ScheduleModelEntity>
 
-    @Query("SELECT * FROM schedule_model WHERE group_id = :groupId AND week_day = :day")
+    @Query("SELECT * FROM schedule_model WHERE group_id = :groupId AND week_number LIKE :weekNumber AND week_day = :day ORDER BY start_lesson_time")
     suspend fun fetchScheduleListByGroupIdAndWeek(
         groupId: Long,
-        weekNumber: Int,
+        weekNumber: String,
         day: String
     ): List<ScheduleModelEntity>
 
-    @Query("SELECT * FROM schedule_model WHERE group_name = :groupName AND week_number = :weekNumber AND week_day = :day")
+    @Query("SELECT * FROM schedule_model WHERE group_name = :groupName AND week_number = :weekNumber AND week_day = :day ORDER BY start_lesson_time")
     suspend fun fetchScheduleByGroupNameAndWeek(
         groupName: String,
         weekNumber: Int,
         day: String
     ): List<ScheduleModelEntity>
 
-    @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId AND week_number = :weekNumber AND week_day = :day")
+    @Query("SELECT * FROM schedule_model WHERE employee_id = :employeeId AND week_number LIKE :weekNumber AND week_day = :day ORDER BY start_lesson_time")
     suspend fun fetchScheduleByEmployeeIdAndWeek(
         employeeId: Long,
-        weekNumber: Int,
+        weekNumber: String,
         day: String
     ): List<ScheduleModelEntity>
 

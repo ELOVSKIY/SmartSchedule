@@ -31,6 +31,7 @@ class DayScheduleFragment : ObservableFragment() {
             )
         )[DayScheduleViewModel::class.java]
         val binding = DayScheduleFragmentBinding.inflate(inflater, container, false)
+        binding.scheduleRecycler.adapter = adapter
         return binding.root
     }
 
