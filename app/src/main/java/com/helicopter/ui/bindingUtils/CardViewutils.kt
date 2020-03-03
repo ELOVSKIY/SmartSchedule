@@ -12,3 +12,15 @@ fun CardView.setSelectedStatus(isSelected: Boolean) {
         else ContextCompat.getColor(context, R.color.unselectedColor)
     )
 }
+
+@BindingAdapter("type")
+fun CardView.setSubjectType(subjectType: String) {
+    this.background.setTint(
+        when(subjectType){
+            "ЛК" -> ContextCompat.getColor(context, R.color.lectureColor)
+            "ПЗ" -> ContextCompat.getColor(context, R.color.practiceColor)
+            "ЛР" -> ContextCompat.getColor(context, R.color.laboratoryColor)
+            else -> ContextCompat.getColor(context, R.color.unselectedColor)
+        }
+    )
+}
