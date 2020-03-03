@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,12 +11,80 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/default_radius"
+        app:type="@{schedule.lessonType}"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:elevation="@dimen/default_elevation"
         tools:context=".ui.fragments.main.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/schedule_height">
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/subject_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginStart="@dimen/default_margin"
+                android:textAppearance="@style/TextAppearance.Title"
+                android:text="@{schedule.subject}"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Матем" />
+
+            <TextView
+                android:id="@+id/subject_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:textAppearance="@style/TextAppearance.Title"
+                android:text="@{schedule.lessonType}"
+                app:layout_constraintBottom_toBottomOf="@+id/subject_name"
+                app:layout_constraintStart_toEndOf="@+id/subject_name"
+                app:layout_constraintTop_toTopOf="@+id/subject_name"
+                tools:text="(ЛК)" />
+
+            <TextView
+                android:id="@+id/subject_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{schedule.lessonTime}"
+                android:textAppearance="@style/TextAppearance.Title.Subtitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="@+id/subject_name"
+                app:layout_constraintTop_toBottomOf="@+id/subject_name"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="11:40 - 13:15" />
+
+            <TextView
+                android:id="@+id/auditory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:text="@{schedule.auditory.get(0)}"
+                android:textAppearance="@style/TextAppearance.Title.Subtitle"
+                app:layout_constraintBottom_toBottomOf="@+id/subject_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/subject_name"
+                tools:text="213б-4" />
+
+            <TextView
+                android:id="@+id/group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{schedule.studentGroup.get(0)}"
+                android:textAppearance="@style/TextAppearance.Title.Subtitle"
+                app:layout_constraintBottom_toBottomOf="@+id/subject_time"
+                app:layout_constraintEnd_toEndOf="@+id/auditory"
+                app:layout_constraintTop_toTopOf="@+id/subject_time"
+                tools:text="851001" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

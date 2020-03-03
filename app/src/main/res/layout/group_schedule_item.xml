@@ -127,7 +127,6 @@
                 android:id="@+id/subgroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/employee_surname"
                 app:layout_constraintEnd_toEndOf="@+id/auditory"
                 app:layout_constraintTop_toTopOf="@+id/employee_surname" />
