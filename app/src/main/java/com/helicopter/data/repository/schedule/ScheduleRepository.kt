@@ -4,11 +4,7 @@ import androidx.lifecycle.LiveData
 import com.helicopter.data.database.entities.ScheduleModelEntity
 
 interface ScheduleRepository {
-    val schedule: LiveData<List<ScheduleModelEntity>>
 
-    suspend fun fetchScheduleByGroupId(groupId: Long)
+    suspend fun updateSchedule()
 
-    suspend fun fetchScheduleByGroupName(groupName: String)
-
-    suspend fun fetchScheduleByEmployeeId(employeeId: Long)
 }

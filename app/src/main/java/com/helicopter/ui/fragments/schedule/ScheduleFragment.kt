@@ -34,8 +34,5 @@ class ScheduleFragment : ObservableFragment() {
     }
 
     override fun setObservers() {
-        viewModel.schedule.observe(viewLifecycleOwner, Observer {
-
-        })
     }
 }

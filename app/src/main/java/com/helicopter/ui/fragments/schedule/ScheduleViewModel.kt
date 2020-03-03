@@ -6,16 +6,15 @@ import com.helicopter.data.database.database.getInstance
 import com.helicopter.data.repository.schedule.ScheduleRepositoryImpl
 import kotlinx.coroutines.*
 
-class ScheduleViewModel(private val app: Application) : ViewModel(), LifecycleObserver {
+class ScheduleViewModel(app: Application) : ViewModel(), LifecycleObserver {
     private val database = getInstance(app)
-    private val repository = ScheduleRepositoryImpl(database.scheduleDao)
+    private val repository = ScheduleRepositoryImpl(database)
 
-    val schedule = repository.schedule
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun fetchSchedule() {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.fetchScheduleByGroupName("851001")
+        viewModelScope.launch(Dispatchers.Main) {
+            repository.updateSchedule()
         }
     }
 

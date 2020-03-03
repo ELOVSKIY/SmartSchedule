@@ -7,7 +7,7 @@ import com.helicopter.data.network.models.Employee
 import com.helicopter.data.network.models.StudentGroup
 import com.helicopter.data.network.remote.response.ScheduleResponse
 
-fun ScheduleResponse.toScheduleModelEntityList(): List<ScheduleModelEntity> {
+fun ScheduleResponse.asScheduleModelEntityList(): List<ScheduleModelEntity> {
     val schedules = this.schedules + this.examSchedules
     val scheduleModelEntities = mutableListOf<ScheduleModelEntity>()
     for (schedule in schedules) {

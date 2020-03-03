@@ -8,10 +8,11 @@ interface ScheduleAPI {
     //CHECKED
     @GET("studentGroup/schedule")
     suspend fun fetchGroupScheduleById(
-        @Field("id") groupId: Long
+        @Query("id") groupId: Long
     ): ScheduleResponse
 
     //CHECKED
+    @FormUrlEncoded
     @GET("studentGroup/schedule")
     suspend fun fetchGroupScheduleByGroupName(
         @Query("studentGroup") studentGroup: String

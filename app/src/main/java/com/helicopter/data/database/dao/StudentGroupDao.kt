@@ -42,16 +42,19 @@ interface StudentGroupDao {
     fun unSelectGroupById(groupId: Long)
 
     @Query("UPDATE student_group SET mainSchedule=1 WHERE group_id =:groupId")
-    suspend fun setMainStudentGroupSchedule(groupId: Long)
+    suspend fun setMainStudentGroup(groupId: Long)
+
+    @Query("SELECT group_id FROM student_group WHERE mainSchedule=1")
+    suspend fun fetchMainStudentGroupId(): Long?
 
     @Query("UPDATE student_group SET mainSchedule=0 WHERE group_id =:groupId")
     suspend fun removeMainScheduleById(groupId: Long)
 
     @Query("UPDATE student_group SET mainSchedule=0")
-    suspend fun removeMainStudentGroupSchedule()
+    suspend fun removeMainStudentGroup()
 
     @Query("UPDATE employee SET mainSchedule=0")
-    suspend fun removeMainEmployeeSchedule()
+    suspend fun removeMainEmployee()
 
     @Transaction
     suspend fun removeSelectedById(employeeId: Long){
@@ -61,8 +64,8 @@ interface StudentGroupDao {
 
     @Transaction
     suspend fun setMainSchedule(groupId: Long){
-        removeMainStudentGroupSchedule()
-        removeMainEmployeeSchedule()
-        setMainStudentGroupSchedule(groupId)
+        removeMainStudentGroup()
+        removeMainEmployee()
+        setMainStudentGroup(groupId)
     }
 }
