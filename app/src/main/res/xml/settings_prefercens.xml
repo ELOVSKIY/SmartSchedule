@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="Расписание">
+        android:title="@string/schedule">
         <SwitchPreference
-            android:key="USE_ALARM"
-            android:title="Устанавливать будильник на первую пару"
-            android:defaultValue="true"
+            android:key="USE_ALARM_SWITCH"
+            android:title="@string/set_alarm_to_first_pair"
+            android:defaultValue="false"
             android:disableDependentsState="false" />
 
         <Preference
-            android:key="CUSTOM_LOCATION"
-            android:title="Будильник"
-            android:summary="Выберите время"
-            android:dependency="USE_ALARM"/>
+            android:key="SET_ALARM"
+            android:title="@string/alarm"
+            android:summary="@string/choose_time"
+            android:dependency="USE_ALARM_SWITCH"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Группа">
+        android:title="@string/group">
+        <ListPreference
+            android:key="SUBGROUP"
+            android:title="@string/subgroup"
+            android:summary="%s"
+            android:defaultValue="@string/all"
+            android:entries="@array/subgroup_entries"
+            android:entryValues="@array/subgroup_values">
+        </ListPreference>
 
     </PreferenceCategory>
 

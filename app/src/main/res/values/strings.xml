@@ -23,6 +23,14 @@
     <string name="search">Search</string>
     <string name="auditory">Аудитории</string>
 
-    <string name="subgroup">Подгруппа: %d</string>
+    <string name="subgroup_numb">Подгруппа: %d</string>
+
+    <string name="group">Группа</string>
+    <string name="subgroup">Подгруппа</string>
+    <string name="first">Первая</string>
+    <string name="second">Вторая</string>
+    <string name="all">Вся</string>
+    <string name="choose_time">Выберите время до универа</string>
+    <string name="set_alarm_to_first_pair">Устанавливать будильник на первую пару</string>
 
 </resources>

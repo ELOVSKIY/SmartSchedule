@@ -8,6 +8,6 @@ import com.helicopter.R
 fun TextView.setSubgroupText(subgroup: Int) {
     text = when (subgroup){
         0 -> ""
-        else -> context.resources.getString(R.string.subgroup, subgroup)
+        else -> context.resources.getString(R.string.subgroup_numb, subgroup)
     }
 }
