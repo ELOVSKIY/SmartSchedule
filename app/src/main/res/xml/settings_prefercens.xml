@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Расписание">
+        <SwitchPreference
+            android:key="USE_ALARM"
+            android:title="Устанавливать будильник на первую пару"
+            android:defaultValue="true"
+            android:disableDependentsState="false" />
+
+        <Preference
+            android:key="CUSTOM_LOCATION"
+            android:title="Будильник"
+            android:summary="Выберите время"
+            android:dependency="USE_ALARM"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Группа">
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

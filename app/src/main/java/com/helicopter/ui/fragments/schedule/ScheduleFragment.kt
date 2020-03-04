@@ -33,6 +33,6 @@ class ScheduleFragment : ObservableFragment() {
         return binding.root
     }
 
-    override fun setObservers() {
-    }
+
+
 }

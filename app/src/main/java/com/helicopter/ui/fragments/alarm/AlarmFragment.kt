@@ -5,23 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
 import com.helicopter.R
+import com.helicopter.databinding.AlarmFragmentBinding
 
 class AlarmFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = AlarmFragment()
-    }
-
     private lateinit var viewModel: AlarmViewModel
+    private lateinit var binding: AlarmFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.alarm_fragment, container, false)
+        binding = AlarmFragmentBinding.inflate(inflater, container, false)
+        binding.timePicker.setIs24HourView(true)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
