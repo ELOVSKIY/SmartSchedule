@@ -32,5 +32,8 @@
     <string name="all">Вся</string>
     <string name="choose_time">Выберите время до универа</string>
     <string name="set_alarm_to_first_pair">Устанавливать будильник на первую пару</string>
+    <string name="do_you_want_remove_item">Вы действительно хотите удалить из списка?</string>
+    <string name="accept">Подтвердить</string>
+    <string name="reject">Отмена</string>
 
 </resources>

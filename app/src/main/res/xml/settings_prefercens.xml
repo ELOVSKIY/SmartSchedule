@@ -22,7 +22,7 @@
             android:key="SUBGROUP"
             android:title="@string/subgroup"
             android:summary="%s"
-            android:defaultValue="@string/all"
+            android:defaultValue="0"
             android:entries="@array/subgroup_entries"
             android:entryValues="@array/subgroup_values">
         </ListPreference>
