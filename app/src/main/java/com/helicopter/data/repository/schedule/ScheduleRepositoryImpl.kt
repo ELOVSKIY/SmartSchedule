@@ -11,6 +11,7 @@ import com.helicopter.data.network.retrofit.RetrofitClient
 import com.helicopter.domain.models.ScheduleDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class ScheduleRepositoryImpl(private val database: ScheduleDatabase, private val app: Application) :
     ScheduleRepository {
@@ -22,24 +23,32 @@ class ScheduleRepositoryImpl(private val database: ScheduleDatabase, private val
             val mainEmployee = database.employeeDao.fetchMainEmployeeId()
             val scheduleApi = RetrofitClient.getScheduleApi()
             mainGroup?.let {
-                val schedule = scheduleApi.fetchGroupScheduleById(it)
-                database.currentWeekNumberDao.updateCurrentWeekNumber(
-                    CurrentWeekNumberEntity(
-                        weekNumber = schedule.currentWeekNumber
+                try {
+                    val schedule = scheduleApi.fetchGroupScheduleById(it)
+                    database.currentWeekNumberDao.updateCurrentWeekNumber(
+                        CurrentWeekNumberEntity(
+                            weekNumber = schedule.currentWeekNumber
+                        )
                     )
-                )
-                val scheduleList = schedule.asScheduleModelEntityList()
-                database.scheduleDao.insertScheduleList(scheduleList)
+                    val scheduleList = schedule.asScheduleModelEntityList()
+                    database.scheduleDao.insertScheduleList(scheduleList)
+                }catch (e: Exception){
+
+                }
             }
             mainEmployee?.let {
-                val schedule = scheduleApi.fetchEmployeeScheduleById(it)
-                database.currentWeekNumberDao.updateCurrentWeekNumber(
-                    CurrentWeekNumberEntity(
-                        weekNumber = schedule.currentWeekNumber
+                try {
+                    val schedule = scheduleApi.fetchEmployeeScheduleById(it)
+                    database.currentWeekNumberDao.updateCurrentWeekNumber(
+                        CurrentWeekNumberEntity(
+                            weekNumber = schedule.currentWeekNumber
+                        )
                     )
-                )
-                val scheduleList = schedule.asScheduleModelEntityList()
-                database.scheduleDao.insertScheduleList(scheduleList)
+                    val scheduleList = schedule.asScheduleModelEntityList()
+                    database.scheduleDao.insertScheduleList(scheduleList)
+                }catch (e: Exception){
+
+                }
             }
         }
     }
