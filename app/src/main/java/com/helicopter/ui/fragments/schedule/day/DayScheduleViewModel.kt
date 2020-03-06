@@ -16,7 +16,7 @@ class DayScheduleViewModel(
 ) : ViewModel() {
 
     private val database = getInstance(app)
-    private val repository = ScheduleRepositoryImpl(database)
+    private val repository = ScheduleRepositoryImpl(database, app)
 
     private val _schedule = MutableLiveData<List<ScheduleDomainModel>>()
     val schedule: LiveData<List<ScheduleDomainModel>>

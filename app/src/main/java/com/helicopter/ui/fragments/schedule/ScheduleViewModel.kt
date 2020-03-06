@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
 
 class ScheduleViewModel(app: Application) : ViewModel(), LifecycleObserver {
     private val database = getInstance(app)
-    private val repository = ScheduleRepositoryImpl(database)
+    private val repository = ScheduleRepositoryImpl(database, app)
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
