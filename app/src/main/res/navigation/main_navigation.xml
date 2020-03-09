@@ -10,10 +10,6 @@
         android:name="com.helicopter.ui.fragments.schedule.ScheduleFragment"
         tools:layout="@layout/schedule_fragment" />
     <fragment
-        android:id="@+id/AlarmFragment"
-        android:name="com.helicopter.ui.fragments.alarm.AlarmFragment"
-        tools:layout="@layout/alarm_fragment" />
-    <fragment
         android:id="@+id/SettingsFragment"
         android:name="com.helicopter.ui.fragments.settings.SettingsFragment"
         tools:layout="@layout/settings_fragment" />
