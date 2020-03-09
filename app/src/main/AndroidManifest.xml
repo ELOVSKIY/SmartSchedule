@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.helicopter" >
+    package="com.helicopter">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -13,9 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <receiver
+            android:name=".receivers.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false"></receiver>
+
         <activity android:name=".ui.fragments.list.select.group.SelectGroupActivity" />
         <activity android:name=".ui.fragments.list.select.employee.SelectEmployeeActivity" />
-        <activity android:name=".ui.fragments.main.MainActivity" >
+        <activity android:name=".ui.fragments.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

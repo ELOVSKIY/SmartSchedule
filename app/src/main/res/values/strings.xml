@@ -35,5 +35,10 @@
     <string name="do_you_want_remove_item">Вы действительно хотите удалить из списка?</string>
     <string name="accept">Подтвердить</string>
     <string name="reject">Отмена</string>
+    <string name="alarm_notification_channel">alarm_notification</string>
+    <string name="alarm_notification_title">Не забудьте поставить будильник!</string>
+    <string name="alarm_notification_channel_name">Будильник</string>
+    <string name="alarm_notification_channel_description">Напоминания поставить будильник</string>
+    <string name="set_alarm">Установить</string>
 
 </resources>
