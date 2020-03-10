@@ -11,7 +11,8 @@
     <color name="selectedColor">#A2FF94</color>
     <color name="unselectedColor">#FFFFFF</color>
 
-    <color name="lectureColor">#6FFF76</color>
-    <color name="practiceColor">#FDE25E</color>
-    <color name="laboratoryColor">#FB4848</color>
+    <color name="lectureColor">#429946</color>
+    <color name="practiceColor">#B4A145</color>
+    <color name="laboratoryColor">#B13737</color>
+    <color name="bottomNavigationBackgroundColor">#00574B</color>
 </resources>

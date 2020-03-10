@@ -59,16 +59,24 @@ class ScheduleRepositoryImpl(private val database: ScheduleDatabase, private val
             val mainEmployee = database.employeeDao.fetchMainEmployeeId()
             mainGroup?.let { groupId ->
                 val subgroupNumber = fetchSubgroupNumber(app)
-                return@withContext database.scheduleDao.fetchScheduleListByGroupIdAndWeek(
-                    groupId,
-                    subgroupNumber,
-                    weekNumber,
-                    day
-                )
-                    .map { it.asDomainModel() }
+                return@withContext if (subgroupNumber == "0"){
+                    database.scheduleDao.fetchScheduleByGroupId(
+                        groupId,
+                        weekNumber,
+                        day
+                    )
+                }else {
+                    database.scheduleDao.fetchScheduleByGroupId(
+                        groupId,
+                        subgroupNumber,
+                        weekNumber,
+                        day
+                    )
+                } .map { it.asDomainModel() }
+
             }
             mainEmployee?.let { employeeId ->
-                return@withContext database.scheduleDao.fetchScheduleByEmployeeIdAndWeek(
+                return@withContext database.scheduleDao.fetchScheduleByEmployeeId(
                     employeeId,
                     weekNumber,
                     day

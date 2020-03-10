@@ -35,4 +35,9 @@
     <style name="TimePicker" parent="AppTheme">
     </style>
 
+    <style name="BottomNavigation" parent="AppTheme">
+        <item name="android:background">@color/bottomNavigationBackgroundColor</item>
+        <item name="itemTextColor">#900000</item>
+    </style>
+
 </resources>
