@@ -14,11 +14,6 @@
         android:icon="@drawable/ic_group_24_svg" />
 
     <item
-        android:id="@+id/VacantAuditoryFragment"
-        android:title="@string/auditory"
-        android:icon="@drawable/ic_auditory_24_svg" />
-
-    <item
         android:id="@+id/SettingsFragment"
         android:title="@string/settings"
         android:icon="@drawable/ic_settings_24_svg" />
