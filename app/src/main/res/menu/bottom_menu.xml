@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <item
         android:id="@+id/CurrentScheduleFragment"
         android:title="@string/schedule"
@@ -12,11 +11,6 @@
         android:id="@+id/ListHolderFragment"
         android:title="@string/list"
         android:icon="@drawable/ic_group_24_svg" />
-
-    <item
-        android:id="@+id/VacantAuditoryFragment"
-        android:title="@string/auditory"
-        android:icon="@drawable/ic_auditory_24_svg" />
 
     <item
         android:id="@+id/SettingsFragment"
